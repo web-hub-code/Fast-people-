@@ -5,98 +5,100 @@
     <title>World War 3 - Muhammad Nazim</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Arial', sans-serif;
             line-height: 1.8;
-            background-color: #1a1a1a; /* Dark background for war theme */
-            color: #e0e0e0;
+            background-color: #0b0d0f;
+            color: #d1d1d1;
             margin: 0;
-            padding: 20px;
+            padding: 10px;
         }
-        .container {
-            max-width: 800px;
-            margin: auto;
-            background: #2c3e50;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            border-top: 5px solid #c0392b; /* Red border for urgency */
+        .book-container {
+            max-width: 700px;
+            margin: 20px auto;
+            background: #1c1f23;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.8);
+            border: 2px solid #444;
         }
         h1 {
-            color: #c0392b;
+            color: #ff4d4d;
             text-align: center;
-            font-size: 2.5em;
+            font-size: 2.8em;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 5px;
+            border-bottom: 3px double #ff4d4d;
+            margin-bottom: 10px;
         }
-        .author-box {
+        .author-info {
             text-align: center;
-            background: #34495e;
-            padding: 15px;
-            border-radius: 5px;
+            font-style: italic;
+            background: #252a30;
+            padding: 10px;
             margin-bottom: 30px;
-            border: 1px solid #c0392b;
+            border-radius: 4px;
+            color: #ffcc00;
         }
         h2 {
-            color: #f1c40f; /* Gold for chapter titles */
-            border-bottom: 1px solid #f1c40f;
-            display: inline-block;
+            color: #ffcc00;
+            border-right: 4px solid #ff4d4d;
+            padding-right: 15px;
             margin-top: 40px;
         }
         p {
-            font-size: 1.15em;
             text-align: justify;
+            font-size: 1.1em;
         }
-        .highlight {
-            color: #f39c12;
-            font-weight: bold;
-        }
-        .alert {
-            background: #7f0000;
-            color: white;
+        .status-update {
+            background: #4d0000;
+            color: #fff;
             padding: 10px;
-            border-radius: 5px;
             text-align: center;
             font-weight: bold;
+            border-radius: 5px;
             margin: 20px 0;
+            border: 1px dashed #ff4d4d;
         }
         footer {
             text-align: center;
             margin-top: 50px;
-            font-size: 0.9em;
-            color: #bdc3c7;
+            font-size: 0.8em;
+            color: #666;
+            border-top: 1px solid #333;
+            padding-top: 10px;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
+<div class="book-container">
     <h1>WORLD WAR 3</h1>
     
-    <div class="author-box">
-        <strong>Musannif (Author):</strong> Muhammad Nazim <br>
-        <strong>Status:</strong> Tactical Journal | <strong>Year:</strong> 2026
+    <div class="author-info">
+        <strong>Author:</strong> Muhammad Nazim <br>
+        <strong>Subject:</strong> Global Conflict & Survival Diary
     </div>
 
-    <div class="alert">REPORT: Global Tensions Rising - 5 Days Until Extraction</div>
+    <div class="status-update">
+        WARNING: STRATEGIC ALERT - MARCH 2026
+    </div>
 
-    <p><em>Ye dastan hai dunya ki us tabahi ki jo aik notification se shuru hui, aur aik musafir ki jo apne mehfooz thikanay, Astore se door phansa hua hai.</em></p>
+    <h2>Tashreeh (Introduction)</h2>
+    <p>Ye dastan hai dunya ke us badalte hue nizam ki jo nuclear khatrat aur aalami kashidgi ke saaye mein shuru hui. Ye Muhammad Nazim ki diary hai jo batati hai ke aik aam insaan ke liye jung ka matlab sirf siyasat nahi, balkay apno se doori aur survival ki jung hai.</p>
 
-    <h2>Chapter 1: Woh Pehli Khabar</h2>
-    <p>Dunya badalne ke liye sirf aik notification kaafi hota hai. Main, <span class="highlight">Muhammad Nazim</span>, apne kamre mein baitha tha jab mobile ki screen roshan hui. America aur Iran ke darmiyan kashidgi ne dunya ko hila kar rakh diya tha. Log kehte hain ye **World War 3** ka aghaz hai.</p>
+    <h2>Chapter 1: Pehli Dastak</h2>
+    <p>Iran-America kashidgi ne dunya ko hila kar rakh diya. Muhammad Nazim apne kamre mein baitha tha jab khabar aayi ke dunya teesari aalami jung ke dahanay par khari hai. Shehar mein khamoshi thi, lekin dilon mein shore mach gaya tha.</p>
 
-    <h2>Chapter 2: Paanch Tareekh Ka Intezar</h2>
-    <p>Nazim ke liye ye sirf aik aam din nahi tha. Ek taraf aalami jung ka khauf tha, aur doosri taraf ek aam insaan ki sab se bari haqiqat: **Khali Jeb.**</p>
-    <p>"Meri salary 5 tareekh ko aayegi," Nazim ne apne aap se kaha. Jab dunya atomi hathiyaron ki baten kar rahi ho, tab aik larki/larka apni salary ka intezar kar raha hota hai taake wo ghar ja sake.</p>
+    <h2>Chapter 2: 5 Tareekh Ka Intezar</h2>
+    <p>Jab dunya baray baray bomb ki baten kar rahi ho, tab Nazim apni salary ka intezar kar raha tha. Kyunke baghair paison ke ghar jana namumkin tha. Ye 5 tareekh uske liye aik umeed ki kiran thi taake wo Astore ke mehfooz paharon ki taraf nikal sake.</p>
 
-    <h2>Chapter 3: Fasad Ki Jarr - America</h2>
-    <p>Kiya ye saari fasad ki jarr America hai? Nazim ke zehan mein sawal utha ke kyun poori dunya ki economy aik dollar ke peeche bhagti hai? Agar dunya ka nizam badal jaye, to shayad har mulk apni azad economy bana sake aur kisi ki dadagiri na chale.</p>
+    <h2>Chapter 3: America - Fasad Ki Jad</h2>
+    <p>Nazim ne likha ke America aur uske Dollar ne poori dunya ko apna ghulam bana rakha hai. Agar ye nizam na badla gaya, to har mulk yunhi darta rahega. Jung ki asli wajah wo taqat hai jo America dunya par jamaye rakhna chahta hai.</p>
 
-    <h2>Chapter 4: Astore Ki Pukaar</h2>
-    <p>Nazim ne tay kiya ke jaise hi 5 tareekh ko paise aayenge, wo is fasad se door apne pyare ghar, <strong>Astore</strong> ki taraf rawana ho jayega. Gilgit-Baltistan ke wo unche pahar dunya ki teesari aalami jung se be-khabar, aaj bhi apne musafir ka intezar kar rahe hain.</p>
+    <h2>Chapter 4: Astore Ki Taraf Safar</h2>
+    <p>Nazim ka plan saaf hai. Jaise hi paise haath mein aayenge, wo is zehreli siyasat aur khaufzada shehar ko chhor kar Gilgit aur Astore ke unche paharon mein panah lega, jahan dunya ki jung ka asar nahi pohanch sakta.</p>
 
     <footer>
-        &copy; 2026 Muhammad Nazim - Official "World War 3" Journal
+        &copy; 2026 Muhammad Nazim | Digital Manuscript
     </footer>
 </div>
 

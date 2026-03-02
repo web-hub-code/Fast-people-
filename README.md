@@ -1,103 +1,104 @@
-<html lang="en">
+<html lang="ur" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FastPeopleSearch Pro | Live Search Engine</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>World War 3 - Muhammad Nazim</title>
     <style>
-        .fps-blue { background-color: #003366; }
-        .fps-green { background-color: #4caf50; }
-        .result-card { border-left: 6px solid #003366; transition: 0.3s; }
-        .result-card:hover { transform: translateY(-2px); shadow: lg; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            background-color: #1a1a1a; /* Dark background for war theme */
+            color: #e0e0e0;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #2c3e50;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-top: 5px solid #c0392b; /* Red border for urgency */
+        }
+        h1 {
+            color: #c0392b;
+            text-align: center;
+            font-size: 2.5em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+        .author-box {
+            text-align: center;
+            background: #34495e;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            border: 1px solid #c0392b;
+        }
+        h2 {
+            color: #f1c40f; /* Gold for chapter titles */
+            border-bottom: 1px solid #f1c40f;
+            display: inline-block;
+            margin-top: 40px;
+        }
+        p {
+            font-size: 1.15em;
+            text-align: justify;
+        }
+        .highlight {
+            color: #f39c12;
+            font-weight: bold;
+        }
+        .alert {
+            background: #7f0000;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 0.9em;
+            color: #bdc3c7;
+        }
     </style>
 </head>
-<body class="bg-gray-50 font-sans">
+<body>
 
-    <header class="fps-blue text-white py-4 px-6 md:px-20 flex justify-between items-center shadow-md">
-        <div class="text-2xl font-black italic tracking-tighter cursor-pointer">FastPeopleSearch</div>
-        <nav class="hidden md:flex space-x-8 text-xs font-bold uppercase tracking-widest">
-            <a href="#" class="hover:underline">People Search</a>
-            <a href="#" class="hover:underline">Reverse Phone</a>
-            <a href="#" class="hover:underline">Address</a>
-        </nav>
-    </header>
-
-    <div class="max-w-5xl mx-auto mt-12 px-4">
-        <h1 class="text-3xl md:text-5xl font-extrabold text-center text-gray-900 mb-8 tracking-tight">100% Free People Search</h1>
-
-        <div class="bg-white rounded-lg shadow-2xl border border-gray-200 overflow-hidden">
-            <div class="flex bg-gray-100 border-b">
-                <button class="px-10 py-5 font-bold text-sm border-b-4 border-blue-900 bg-white text-blue-900 uppercase">Name Search</button>
-                <button class="px-10 py-5 font-bold text-sm text-gray-400 hover:bg-gray-50 uppercase">Phone</button>
-                <button class="px-10 py-5 font-bold text-sm text-gray-400 hover:bg-gray-50 uppercase">Address</button>
-            </div>
-
-            <div class="p-8 grid grid-cols-1 md:grid-cols-3 gap-4">
-                <input id="qName" type="text" placeholder="First & Last Name (e.g. John Smith)" class="p-4 border border-gray-300 rounded focus:ring-2 focus:ring-blue-800 outline-none text-lg">
-                <input id="qLocation" type="text" placeholder="City, State or ZIP" class="p-4 border border-gray-300 rounded focus:ring-2 focus:ring-blue-800 outline-none text-lg">
-                <button onclick="masterSearch()" class="fps-green hover:bg-green-600 text-white font-black text-xl py-4 rounded shadow-lg transition-all flex items-center justify-center">
-                    <i class="fa fa-search mr-3"></i> FREE SEARCH
-                </button>
-            </div>
-            <p class="text-center pb-4 text-[10px] text-gray-400 uppercase font-bold tracking-widest italic">The most accurate free people search on the web</p>
-        </div>
-
-        <div id="resultsArea" class="mt-12 mb-20 hidden">
-            <h2 class="text-2xl font-bold text-gray-700 mb-6 border-b-2 border-gray-200 pb-2 flex items-center">
-                <i class="fas fa-list-ul mr-3 text-blue-900"></i> LIVE RECORDS FOUND
-            </h2>
-            <div id="resultsList" class="space-y-6">
-                </div>
-        </div>
+<div class="container">
+    <h1>WORLD WAR 3</h1>
+    
+    <div class="author-box">
+        <strong>Musannif (Author):</strong> Muhammad Nazim <br>
+        <strong>Status:</strong> Tactical Journal | <strong>Year:</strong> 2026
     </div>
 
-    <script>
-        // Sweetie, yahan aapko apni Google API Key lagani hogi (Main niche batati hoon kaise)
-        const GOOGLE_API_KEY = "YOUR_GOOGLE_API_KEY"; 
-        const CX_ID = "YOUR_SEARCH_ENGINE_ID";
+    <div class="alert">REPORT: Global Tensions Rising - 5 Days Until Extraction</div>
 
-        async function masterSearch() {
-            const name = document.getElementById('qName').value.trim();
-            const location = document.getElementById('qLocation').value.trim();
-            const list = document.getElementById('resultsList');
-            const area = document.getElementById('resultsArea');
+    <p><em>Ye dastan hai dunya ki us tabahi ki jo aik notification se shuru hui, aur aik musafir ki jo apne mehfooz thikanay, Astore se door phansa hua hai.</em></p>
 
-            if(!name) { alert("Sweetie, please enter a name!"); return; }
+    <h2>Chapter 1: Woh Pehli Khabar</h2>
+    <p>Dunya badalne ke liye sirf aik notification kaafi hota hai. Main, <span class="highlight">Muhammad Nazim</span>, apne kamre mein baitha tha jab mobile ki screen roshan hui. America aur Iran ke darmiyan kashidgi ne dunya ko hila kar rakh diya tha. Log kehte hain ye **World War 3** ka aghaz hai.</p>
 
-            list.innerHTML = `<div class="text-center py-10"><i class="fas fa-spinner fa-spin text-4xl text-blue-900"></i><p class="mt-2 font-bold text-blue-900">Searching Real Public Records...</p></div>`;
-            area.classList.remove('hidden');
+    <h2>Chapter 2: Paanch Tareekh Ka Intezar</h2>
+    <p>Nazim ke liye ye sirf aik aam din nahi tha. Ek taraf aalami jung ka khauf tha, aur doosri taraf ek aam insaan ki sab se bari haqiqat: **Khali Jeb.**</p>
+    <p>"Meri salary 5 tareekh ko aayegi," Nazim ne apne aap se kaha. Jab dunya atomi hathiyaron ki baten kar rahi ho, tab aik larki/larka apni salary ka intezar kar raha hota hai taake wo ghar ja sake.</p>
 
-            try {
-                // Google Custom Search API Call (Live Search)
-                const searchQuery = `${name} ${location} people search address phone`;
-                const response = await fetch(`https://www.googleapis.com/customsearch/v1?key=${GOOGLE_API_KEY}&cx=${CX_ID}&q=${searchQuery}`);
-                const data = await response.json();
+    <h2>Chapter 3: Fasad Ki Jarr - America</h2>
+    <p>Kiya ye saari fasad ki jarr America hai? Nazim ke zehan mein sawal utha ke kyun poori dunya ki economy aik dollar ke peeche bhagti hai? Agar dunya ka nizam badal jaye, to shayad har mulk apni azad economy bana sake aur kisi ki dadagiri na chale.</p>
 
-                list.innerHTML = "";
-                
-                if (data.items) {
-                    data.items.slice(0, 5).forEach(item => {
-                        list.innerHTML += `
-                            <div class="result-card bg-white p-6 rounded shadow hover:shadow-xl transition flex flex-col md:flex-row justify-between items-start md:items-center">
-                                <div class="flex-1">
-                                    <h3 class="text-2xl font-black text-blue-800 uppercase hover:underline cursor-pointer tracking-tight">${item.title}</h3>
-                                    <p class="text-sm text-gray-600 mt-2 leading-relaxed">${item.snippet}</p>
-                                    <p class="text-xs text-green-600 font-bold mt-2 uppercase tracking-tighter"><i class="fas fa-link mr-1"></i> Source: ${item.displayLink}</p>
-                                </div>
-                                <a href="${item.link}" target="_blank" class="mt-4 md:mt-0 bg-blue-50 text-blue-900 font-black py-3 px-8 border border-blue-200 rounded-lg hover:bg-blue-900 hover:text-white transition uppercase text-xs shadow-sm">
-                                    View Full Record
-                                </a>
-                            </div>
-                        `;
-                    });
-                } else {
-                    list.innerHTML = `<div class="bg-red-50 p-6 text-red-700 rounded border border-red-200">No public records found for this name. Try a different variation, sweetie!</div>`;
-                }
-            } catch (error) {
-                list.innerHTML = `<p class="text-red-500 font-bold">Error: Sweetie, API Key check karein!</p>`;
-            }
-        }
-    </script>
+    <h2>Chapter 4: Astore Ki Pukaar</h2>
+    <p>Nazim ne tay kiya ke jaise hi 5 tareekh ko paise aayenge, wo is fasad se door apne pyare ghar, <strong>Astore</strong> ki taraf rawana ho jayega. Gilgit-Baltistan ke wo unche pahar dunya ki teesari aalami jung se be-khabar, aaj bhi apne musafir ka intezar kar rahe hain.</p>
+
+    <footer>
+        &copy; 2026 Muhammad Nazim - Official "World War 3" Journal
+    </footer>
+</div>
+
 </body>
 </html>

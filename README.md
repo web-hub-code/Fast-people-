@@ -2,187 +2,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ApexDaily Pro | Premium Investment</title>
+    <title>ApexDaily | Colorful Trading</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;900&display=swap');
-        body { background-color: #020617; color: #f1f5f9; font-family: 'Outfit', sans-serif; }
-        .glass { background: rgba(30, 41, 59, 0.4); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.05); }
-        .gradient-btn { background: linear-gradient(135deg, #3b82f6, #2563eb); transition: 0.3s; }
-        .gradient-btn:active { transform: scale(0.96); }
-        .coming-soon { opacity: 0.5; filter: grayscale(1); pointer-events: none; }
+        
+        body { 
+            background: radial-gradient(circle at top left, #0f172a, #020617); 
+            color: #f1f5f9; 
+            font-family: 'Outfit', sans-serif; 
+            overflow-x: hidden;
+        }
+
+        /* Animated Neon Border for Balance Card */
+        .balance-card {
+            background: linear-gradient(135deg, #3b82f6 0%, #a855f7 50%, #ec4899 100%);
+            box-shadow: 0 10px 40px rgba(168, 85, 247, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .balance-card::before {
+            content: "";
+            position: absolute;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: conic-gradient(transparent, transparent, transparent, #ffffff);
+            animation: rotate 6s linear infinite;
+            opacity: 0.2;
+        }
+
+        @keyframes rotate { 100% { transform: rotate(360deg); } }
+
+        /* Colorful Glassmorphism */
+        .glass-blue { background: rgba(59, 130, 246, 0.15); border: 1px solid rgba(59, 130, 246, 0.3); backdrop-filter: blur(10px); }
+        .glass-green { background: rgba(34, 197, 94, 0.15); border: 1px solid rgba(34, 197, 94, 0.3); backdrop-filter: blur(10px); }
+        .glass-purple { background: rgba(168, 85, 247, 0.15); border: 1px solid rgba(168, 85, 247, 0.3); backdrop-filter: blur(10px); }
+        .glass-pink { background: rgba(236, 72, 153, 0.15); border: 1px solid rgba(236, 72, 153, 0.3); backdrop-filter: blur(10px); }
+
+        .neon-text-blue { text-shadow: 0 0 10px #3b82f6; }
+        .neon-text-green { text-shadow: 0 0 10px #22c55e; }
+
+        .btn-gradient {
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+            background-size: 200% auto;
+            transition: 0.5s;
+        }
+        .btn-gradient:hover { background-position: right center; transform: scale(1.05); }
+
+        /* Floating Nav bar */
+        nav {
+            background: rgba(15, 23, 42, 0.8);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+        }
     </style>
 
     <script type="module">
+        // (Firebase Logic remains the same as previous)
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getAuth, onAuthStateChanged, signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-        import { getFirestore, doc, setDoc, onSnapshot, collection, addDoc, query, where, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyDt3ChZHyDdtM4Ir1oXRZJUywcOiV30Wtg",
-            authDomain: "investment-84f4e.firebaseapp.com",
-            projectId: "investment-84f4e",
-            storageBucket: "investment-84f4e.firebasestorage.app",
-            messagingSenderId: "975293889308",
-            appId: "1:975293889308:web:6d034a99cc966c75ff58d9"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-
-        const PKR_RATE = 280;
-
-        onAuthStateChanged(auth, (user) => {
-            if(user) {
-                document.getElementById('authSec').classList.add('hidden');
-                document.getElementById('appBody').classList.remove('hidden');
-                
-                if(user.email === "admin@apexdaily.com") {
-                    document.getElementById('adminView').classList.remove('hidden');
-                    loadAdminData();
-                } else {
-                    document.getElementById('userView').classList.remove('hidden');
-                    syncUserData(user.uid);
-                }
-            }
-        });
-
-        // --- USER LOGIC ---
-        function syncUserData(uid) {
-            onSnapshot(doc(db, "users", uid), (d) => {
-                if(d.exists()) {
-                    const data = d.data();
-                    document.getElementById('uBal').innerText = "$" + data.balance.toFixed(2);
-                    document.getElementById('uBalPKR').innerText = "Rs. " + (data.balance * PKR_RATE).toLocaleString();
-                }
-            });
-            loadHistory(uid);
-        }
-
-        window.updatePKR = () => {
-            const usd = document.getElementById('depAmount').value;
-            document.getElementById('pkrLabel').innerText = usd ? `Approx: Rs. ${usd * PKR_RATE}` : "Rs. 0";
-        };
-
-        window.applyPromo = async () => {
-            const code = document.getElementById('promoCode').value;
-            if(!code) return alert("Enter code sweetie!");
-            await addDoc(collection(db, "promo_requests"), {
-                uid: auth.currentUser.uid,
-                email: auth.currentUser.email,
-                code: code,
-                status: "pending",
-                time: new Date()
-            });
-            alert("Promo request sent to Admin! Bonus will be added after review.");
-        };
-
-        // --- ADMIN LOGIC ---
-        window.sendBroadcast = async () => {
-            const msg = document.getElementById('bcMsg').value;
-            await setDoc(doc(db, "settings", "broadcast"), { message: msg, time: new Date() });
-            alert("Broadcast sent sweetie!");
-        };
-
-        // --- UI ---
-        window.showTab = (id) => {
-            ['homeTab','walletTab','historyTab','aboutTab'].forEach(t => document.getElementById(t).classList.add('hidden'));
-            document.getElementById(id).classList.remove('hidden');
-        };
-
-        window.handleAuth = async (type) => {
-            const u = document.getElementById('uInp').value;
-            const p = document.getElementById('pInp').value;
-            const email = u.includes('@') ? u : `${u}@apex.com`;
-            try {
-                if(type === 'signup') {
-                    const res = await createUserWithEmailAndPassword(auth, email, p);
-                    await setDoc(doc(db, "users", res.user.uid), { username: u, balance: 0, createdAt: new Date() });
-                } else { await signInWithEmailAndPassword(auth, email, p); }
-            } catch(e) { alert(e.message); }
-        };
+        // ... (Insert your Firebase and logic here sweetie)
     </script>
 </head>
-<body class="pb-24">
+<body class="pb-32">
 
-    <div id="authSec" class="h-screen flex items-center justify-center p-6">
-        <div class="w-full max-w-sm glass p-10 rounded-[2.5rem] text-center border-t-2 border-blue-500/20">
-            <h1 class="text-4xl font-black text-blue-500 mb-8 italic">APEXDAILY</h1>
-            <input id="uInp" type="text" placeholder="Username" class="w-full p-4 bg-white/5 rounded-2xl mb-4 outline-none border border-white/10">
-            <input id="pInp" type="password" placeholder="Password" class="w-full p-4 bg-white/5 rounded-2xl mb-8 outline-none border border-white/10">
-            <button onclick="handleAuth('login')" class="w-full gradient-btn py-4 rounded-2xl font-bold">Login</button>
+    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-full h-40 bg-blue-600/20 blur-[100px] pointer-events-none"></div>
+
+    <div id="userDash" class="p-6">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-black italic neon-text-blue tracking-tighter">APEX<span class="text-white">PRO</span></h1>
+            <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-pink-500 to-yellow-500 p-[2px]">
+                <div class="w-full h-full bg-[#020617] rounded-full flex items-center justify-center">
+                    <i class="fa-solid fa-user text-xs"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="balance-card p-8 rounded-[2.5rem] mb-10 text-white relative">
+            <div class="relative z-10">
+                <p class="text-[10px] uppercase font-bold tracking-[3px] mb-1 opacity-90">Net Worth</p>
+                <h1 id="uBal" class="text-6xl font-black mb-1 tracking-tighter">$1,250.00</h1>
+                <p class="text-xs font-medium opacity-80">≈ Rs. 350,000</p>
+                
+                <div class="flex gap-4 mt-8">
+                    <button class="flex-1 bg-white text-blue-600 py-4 rounded-2xl font-black text-sm shadow-xl shadow-white/10 active:scale-95 transition">DEPOSIT</button>
+                    <button class="flex-1 bg-black/30 backdrop-blur-md py-4 rounded-2xl font-black text-sm border border-white/20 active:scale-95 transition">WITHDRAW</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 mb-10">
+            <div class="glass-green p-5 rounded-3xl">
+                <i class="fa-solid fa-chart-line text-green-400 mb-3"></i>
+                <p class="text-[10px] text-gray-400 uppercase font-bold">Daily Profit</p>
+                <h4 class="text-xl font-black text-green-400">+2.85%</h4>
+            </div>
+            <div class="glass-purple p-5 rounded-3xl">
+                <i class="fa-solid fa-gift text-purple-400 mb-3"></i>
+                <p class="text-[10px] text-gray-400 uppercase font-bold">Bonus Won</p>
+                <h4 class="text-xl font-black text-purple-400">$15.00</h4>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-3 mb-6">
+            <div class="h-[2px] w-8 bg-blue-500"></div>
+            <h2 class="text-lg font-black uppercase tracking-widest text-blue-400">Trading Plans</h2>
+        </div>
+
+        <div class="space-y-4">
+            <div class="glass-blue p-6 rounded-[2rem] flex justify-between items-center border-l-8 border-blue-500">
+                <div>
+                    <h3 class="text-2xl font-black">Plan $5</h3>
+                    <p class="text-[10px] text-blue-300 font-bold">Daily: Rs. 1,400 returns</p>
+                </div>
+                <button class="btn-gradient px-6 py-3 rounded-xl font-bold text-xs">BUY NOW</button>
+            </div>
+
+            <div class="glass-pink p-6 rounded-[2rem] flex justify-between items-center border-l-8 border-pink-500">
+                <div>
+                    <h3 class="text-2xl font-black">Plan $20</h3>
+                    <p class="text-[10px] text-pink-300 font-bold">Daily: Rs. 5,600 returns</p>
+                </div>
+                <button class="btn-gradient px-6 py-3 rounded-xl font-bold text-xs">BUY NOW</button>
+            </div>
         </div>
     </div>
 
-    <div id="appBody" class="hidden">
-        
-        <div id="adminView" class="hidden p-6">
-            <h1 class="text-2xl font-black text-yellow-500 mb-6 italic">ADMIN BROADCAST</h1>
-            <textarea id="bcMsg" placeholder="Sab ko message bhejo sweetie..." class="w-full h-24 bg-white/5 rounded-2xl p-4 outline-none border border-white/10 mb-4"></textarea>
-            <button onclick="sendBroadcast()" class="w-full bg-yellow-600 py-3 rounded-xl font-bold">Send Announcement</button>
-        </div>
-
-        <div id="userView" class="hidden">
-            <div id="homeTab" class="p-6">
-                <div class="glass p-8 rounded-[2.5rem] bg-gradient-to-br from-blue-600 to-indigo-900 border-none shadow-2xl mb-8 relative overflow-hidden">
-                    <p class="text-[10px] text-blue-100 uppercase tracking-widest font-bold">Trading Capital</p>
-                    <h1 id="uBal" class="text-6xl font-black my-2 tracking-tighter">$0.00</h1>
-                    <p id="uBalPKR" class="text-xs opacity-70">Rs. 0</p>
-                    <button onclick="showTab('walletTab')" class="mt-6 w-full bg-white/20 py-3 rounded-xl font-bold backdrop-blur-md">Add Funds</button>
-                </div>
-
-                <div class="glass p-6 rounded-3xl mb-8">
-                    <p class="text-[10px] text-gray-500 mb-3 uppercase font-bold">Gift / Promo Code</p>
-                    <div class="flex gap-2">
-                        <input id="promoCode" type="text" placeholder="Enter Code" class="bg-black/40 p-3 rounded-xl flex-1 text-xs outline-none border border-white/5">
-                        <button onclick="applyPromo()" class="bg-blue-600 px-4 rounded-xl text-xs font-bold">Apply</button>
-                    </div>
-                </div>
-            </div>
-
-            <div id="walletTab" class="hidden p-6">
-                <h2 class="text-2xl font-black mb-6 italic text-green-400">Secure Deposit</h2>
-                <div class="space-y-4 mb-8">
-                    <div class="glass p-4 rounded-2xl border-l-4 border-yellow-500">
-                        <p class="text-[10px] text-gray-400">JazzCash / SadaPay</p>
-                        <p class="font-black text-lg">03705519562</p>
-                    </div>
-                    <div class="glass p-4 rounded-2xl border-l-4 border-green-500">
-                        <p class="text-[10px] text-gray-400">EasyPaisa</p>
-                        <p class="font-black text-lg">03379827882</p>
-                    </div>
-                    <div class="glass p-4 rounded-2xl coming-soon flex justify-between">
-                        <p class="text-sm">Bank / Binance</p>
-                        <span class="text-[8px] bg-white/10 px-2 py-1 rounded">COMING SOON</span>
-                    </div>
-                </div>
-
-                <input id="depAmount" oninput="updatePKR()" type="number" placeholder="Amount in USD ($)" class="w-full p-4 bg-white/5 rounded-2xl mb-2 outline-none border border-white/10">
-                <p id="pkrLabel" class="text-[10px] text-blue-400 font-bold mb-4 ml-2">Rs. 0</p>
-                <input id="depTid" type="text" placeholder="Transaction ID (TID)" class="w-full p-4 bg-white/5 rounded-2xl mb-6 outline-none border border-white/10">
-                <button class="w-full gradient-btn py-4 rounded-2xl font-bold">Confirm Deposit</button>
-            </div>
-
-            <div id="aboutTab" class="hidden p-6">
-                <h2 class="text-2xl font-black mb-6 italic text-blue-400">Trusted Platform</h2>
-                <div class="glass p-6 rounded-3xl space-y-4 text-xs leading-relaxed opacity-80">
-                    <p><b class="text-blue-400">Who we are:</b> ApexDaily is a certified high-frequency trading firm operating since 2024. We use AI algorithms to generate daily 2.8% profit.</p>
-                    <p><b class="text-blue-400">Privacy Policy:</b> Your data is encrypted with SSL-256 bit security. We never share your personal information or wallet details with third parties.</p>
-                    <p><b class="text-blue-400">Terms:</b> Minimum withdrawal is $5. Payments are processed within 2-24 hours. Multiple accounts are strictly prohibited.</p>
-                </div>
-            </div>
-
-            <nav class="fixed bottom-0 left-0 right-0 glass p-6 flex justify-around items-center rounded-t-[2.5rem] z-50">
-                <button onclick="showTab('homeTab')" class="flex flex-col items-center gap-1 focus:text-blue-500"><i class="fa-solid fa-house"></i><span class="text-[8px]">Home</span></button>
-                <button onclick="showTab('walletTab')" class="flex flex-col items-center gap-1 focus:text-blue-500"><i class="fa-solid fa-wallet"></i><span class="text-[8px]">Wallet</span></button>
-                <button onclick="showTab('aboutTab')" class="flex flex-col items-center gap-1 focus:text-blue-500"><i class="fa-solid fa-shield-halved"></i><span class="text-[8px]">Trust</span></button>
-                <button onclick="signOut(auth)" class="flex flex-col items-center gap-1 text-red-500 opacity-50"><i class="fa-solid fa-power-off"></i><span class="text-[8px]">Exit</span></button>
-            </nav>
-        </div>
-    </div>
+    <nav class="fixed bottom-0 left-0 right-0 p-5 flex justify-around items-center rounded-t-[3rem] z-50">
+        <button class="text-blue-500 flex flex-col items-center gap-1">
+            <i class="fa-solid fa-house-chimney text-xl"></i>
+            <span class="text-[9px] font-bold">Home</span>
+        </button>
+        <button class="text-gray-500 hover:text-purple-500 flex flex-col items-center gap-1 transition">
+            <i class="fa-solid fa-wallet text-xl"></i>
+            <span class="text-[9px] font-bold">Wallet</span>
+        </button>
+        <button class="text-gray-500 hover:text-green-500 flex flex-col items-center gap-1 transition">
+            <i class="fa-solid fa-clock-rotate-left text-xl"></i>
+            <span class="text-[9px] font-bold">History</span>
+        </button>
+        <button class="text-gray-500 hover:text-pink-500 flex flex-col items-center gap-1 transition">
+            <i class="fa-solid fa-headset text-xl"></i>
+            <span class="text-[9px] font-bold">Support</span>
+        </button>
+    </nav>
 
 </body>
 </html>

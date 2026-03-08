@@ -2,76 +2,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PakGold | Professional Mining 🇵🇰</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>PakGold | Elite Mining Farm 🇵🇰</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* --- PREMIUM UI --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background: #020617; color: white; min-height: 100vh; padding-bottom: 50px; }
-        .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 20px; width: 92%; max-width: 450px; margin: 20px auto; text-align: center; }
-        .brand-name { font-size: 2rem; font-weight: 600; color: #fbbf24; margin: 20px 0; }
-        input, select { width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; color: white; margin-bottom: 12px; outline: none; }
-        .btn-main { width: 100%; padding: 12px; background: linear-gradient(90deg, #fbbf24, #d97706); border: none; border-radius: 10px; color: black; font-weight: bold; cursor: pointer; transition: 0.3s; }
-        .btn-main:hover { opacity: 0.8; transform: scale(1.01); }
+        :root { --gold: #fbbf24; --bg: #020617; --glass: rgba(255, 255, 255, 0.03); --green: #10b981; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body { background: var(--bg); color: white; min-height: 100vh; overflow-x: hidden; }
         
-        #authSection, #dashboardPage, #adminPage { display: none; }
+        /* Layouts */
+        .glass-card { background: var(--glass); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.08); border-radius: 24px; padding: 20px; width: 92%; max-width: 450px; margin: 15px auto; }
+        .brand-name { font-size: 2.5rem; font-weight: 600; color: var(--gold); text-align: center; margin: 20px 0; user-select: none; }
+        
+        /* Buttons & Inputs */
+        input, select { width: 100%; padding: 14px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; color: white; margin-bottom: 12px; outline: none; font-size: 0.9rem; }
+        .btn-main { width: 100%; padding: 15px; background: var(--gold); border: none; border-radius: 14px; color: #000; font-weight: 700; cursor: pointer; text-transform: uppercase; transition: 0.3s; }
+        .btn-main:hover { transform: scale(1.02); box-shadow: 0 10px 20px rgba(251,191,36,0.2); }
+        
+        /* Grid & Components */
+        .m-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 15px; }
+        .m-card { background: var(--glass); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 18px; text-align: center; position: relative; }
+        .hot-tag { position: absolute; top: 5px; right: 5px; background: #ef4444; font-size: 0.5rem; padding: 2px 6px; border-radius: 4px; }
+        
+        #welcomeScreen, #authSection, #dashboardPage, #adminPage, #adminTrigger, #termsModal { display: none; }
         .active { display: block !important; }
-        .machine-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
-        .m-card { background: rgba(255,255,255,0.05); border-radius: 12px; padding: 10px; border: 1px solid rgba(255,255,255,0.1); font-size: 0.7rem; }
-        .wa-btn { position: fixed; bottom: 20px; right: 20px; background: #25d366; color: white; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 28px; z-index: 999; box-shadow: 0 5px 15px rgba(0,0,0,0.4); }
+        .flex-active { display: flex !important; }
+
+        /* Animation */
+        @keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
     </style>
 </head>
 <body>
 
-    <a href="https://wa.me/923705519562" class="wa-btn" target="_blank">💬</a>
+    <div id="welcomeScreen" class="flex-active" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#020617; z-index:10000; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+        <div class="brand-name" style="font-size: 3.5rem;">PakGold</div>
+        <p style="color: #94a3b8; letter-spacing: 2px; font-size: 0.8rem;">THE FUTURE OF MINING</p>
+        <button onclick="enterApp()" class="btn-main" style="margin-top: 40px; width: 200px;">Get Started 🚀</button>
+    </div>
 
-    <div id="authSection" class="active">
-        <div class="brand-name" style="text-align: center;">PakGold</div>
+    <div id="authSection">
+        <h1 class="brand-name" id="secretTap">PakGold</h1>
         <div class="glass-card">
-            <h3 id="authTitle" style="margin-bottom: 15px; color: #fbbf24;">Sign In</h3>
-            <input type="text" id="email" placeholder="Email Address (e.g. user@gmail.com)">
-            <input type="password" id="pass" placeholder="Password">
-            <button id="mainAuthBtn" class="btn-main">Login Now</button>
-            <p id="toggleAuth" style="font-size: 0.7rem; color: #4facfe; margin-top: 15px; cursor: pointer;">Don't have an account? Sign Up</p>
-            <p onclick="adminAccess()" style="font-size: 0.5rem; color: #94a3b8; margin-top: 20px; cursor: pointer;">Admin Panel Access</p>
+            <h2 id="authTitle" style="margin-bottom: 20px; font-size: 1.2rem;">Welcome Back</h2>
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="password" placeholder="Password">
+            <div id="signupExtra" style="display:none;"><input type="text" id="refBy" placeholder="Referral Code (Optional)"></div>
+            <button id="authBtn" class="btn-main">Login</button>
+            <p id="toggleAuth" style="font-size: 0.8rem; color: #94a3b8; margin-top: 20px; text-align: center; cursor: pointer;">New here? <span style="color: var(--gold)">Create Account</span></p>
+            
+            <div id="adminTrigger" style="margin-top: 15px;">
+                <input type="password" id="adminKey" placeholder="Admin Key" style="border-color: #ef4444;">
+                <button onclick="checkAdmin()" class="btn-main" style="background:#ef4444; color:white;">Open Vault</button>
+            </div>
         </div>
     </div>
 
-    <div id="dashboardPage" class="glass-card">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-            <span style="color: #fbbf24; font-weight: bold;">Dashboard</span>
-            <button id="logoutBtn" style="background:none; border:1px solid #ef4444; color:#ef4444; font-size: 0.6rem; padding:3px 8px; border-radius:5px;">Logout</button>
+    <div id="dashboardPage">
+        <div class="glass-card" style="margin-top:10px; padding:10px; border-color:#4facfe;">
+            <marquee id="adminNotice" style="font-size: 0.7rem; color: #cbd5e1;">Welcome to PakGold! Start your mining journey today. ⛏️</marquee>
         </div>
 
-        <div style="background: rgba(251, 191, 36, 0.1); padding: 15px; border-radius: 15px; border: 1px solid rgba(251, 191, 36, 0.2);">
-            <p style="font-size: 0.65rem; color: #94a3b8;">Welcome back, <span id="userName" style="color: #fff;">Miner</span></p>
-            <h2 style="color: #fbbf24; margin: 10px 0;">PKR <span id="userBal">0.00</span></h2>
-            <p style="font-size: 0.6rem;">Active Machine: <b id="activeM" style="color:#10b981;">None</b></p>
-        </div>
+        <div class="glass-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <span style="color: var(--gold); font-size: 0.8rem;">Hello, <b id="displayUser"></b></span>
+                <button onclick="logout()" style="background:none; border:none; color:#ef4444; font-size:0.7rem;">Logout</button>
+            </div>
+            
+            <div style="text-align: center; background:rgba(251,191,36,0.05); padding:20px; border-radius:20px; border:1px solid rgba(251,191,36,0.1);">
+                <p style="font-size: 0.7rem; color: #94a3b8;">Mining Balance</p>
+                <h1 style="color: var(--gold); font-size: 2.2rem; margin: 5px 0;">PKR <span id="bal">0.00</span></h1>
+                <p style="font-size: 0.6rem; color: var(--green);">Rig: <span id="machine">None</span></p>
+            </div>
 
-        <button id="taskBtn" class="btn-main" style="background: #10b981; color: white;">Claim Daily Mining Reward ⛏️</button>
+            <button id="claimBtn" class="btn-main" style="background: var(--green); color: white; margin-top: 15px;">Claim Daily Yield ⛏️</button>
+            
+            <div style="margin-top: 15px; text-align: center;">
+                <button onclick="claimLucky()" id="luckyBtn" style="background:linear-gradient(90deg, #ec4899, #8b5cf6); border:none; border-radius:12px; color:white; padding:10px; width:100%; font-size:0.7rem; font-weight:bold; cursor:pointer;">🎁 Daily Lucky Box (Win up to 20)</button>
+            </div>
 
-        <h4 style="text-align: left; margin-top: 25px; font-size: 0.8rem; color: #fbbf24;">Mining Machines 🏪</h4>
-        <div id="mGrid" class="machine-grid"></div>
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-top:15px;">
+                <div class="m-card" style="font-size:0.6rem;">Invite: <b id="myCode" style="color:var(--gold);"></b><br><button onclick="copyRef()" style="background:var(--gold); border:none; border-radius:4px; padding:2px 5px; margin-top:4px;">Copy Link</button></div>
+                <div class="m-card" style="font-size:0.6rem;">Recent Payouts<div id="payoutScroll" style="height:20px; overflow:hidden; color:var(--green); margin-top:4px;"></div></div>
+            </div>
 
-        <h4 style="text-align: left; margin-top: 25px; font-size: 0.8rem; color: #4facfe;">Wallet Operations 🏦</h4>
-        <div style="margin-top: 10px;">
-            <select id="txnType"><option value="Deposit">Deposit (Min 200)</option><option value="Withdraw">Withdraw (Min 100)</option></select>
-            <input type="number" id="txnAmt" placeholder="Amount">
-            <button id="txnBtn" class="btn-main" style="background: #4facfe; color: white;">Submit Request</button>
+            <h4 style="margin-top: 20px; font-size: 0.8rem; color: var(--gold);">Mining Rig Store 🏪</h4>
+            <div id="mGrid" class="m-grid"></div>
         </div>
     </div>
 
     <div id="adminPage" class="glass-card">
-        <h2 style="color: #fbbf24;">Admin Control</h2>
-        <div id="adminList" style="margin-top: 20px;"></div>
-        <button onclick="location.reload()" class="btn-main" style="background: #ef4444; color: white; margin-top: 15px;">Exit</button>
+        <h2 style="color: #ef4444; margin-bottom: 15px;">Admin Dashboard</h2>
+        <div id="adminList"></div>
+        <input type="text" id="newNotice" placeholder="New Notice..." style="margin-top:20px;">
+        <button onclick="updateNotice()" class="btn-main" style="padding:10px;">Update Notice</button>
+        <button onclick="location.reload()" class="btn-main" style="background:#334155; color:white; margin-top:10px;">Exit</button>
     </div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
-        import { getFirestore, doc, getDoc, setDoc, updateDoc, onSnapshot, collection, addDoc, query, where, increment, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
+        import { getFirestore, doc, getDoc, setDoc, updateDoc, onSnapshot, collection, query, where, increment, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyCMG6KG_oD8cjEk4YpbxXik-C5q8K5MDHk",
@@ -83,100 +111,136 @@
         };
 
         const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
         const db = getFirestore(app);
 
-        let isLoginMode = true;
+        // --- AUTH LOGIC ---
+        let isLogin = true;
+        let currentUser = localStorage.getItem('pakgold_user');
 
-        // --- AUTH TOGGLE ---
+        window.enterApp = () => {
+            document.getElementById('welcomeScreen').style.display = 'none';
+            if(!currentUser) document.getElementById('authSection').classList.add('active');
+            else showDashboard();
+        };
+
         document.getElementById('toggleAuth').onclick = () => {
-            isLoginMode = !isLoginMode;
-            document.getElementById('authTitle').innerText = isLoginMode ? "Sign In" : "Sign Up";
-            document.getElementById('mainAuthBtn').innerText = isLoginMode ? "Login Now" : "Create Account";
-            document.getElementById('toggleAuth').innerText = isLoginMode ? "Don't have an account? Sign Up" : "Already have an account? Sign In";
+            isLogin = !isLogin;
+            document.getElementById('authTitle').innerText = isLogin ? "Welcome Back" : "Create Account";
+            document.getElementById('authBtn').innerText = isLogin ? "Login" : "Register";
+            document.getElementById('signupExtra').style.display = isLogin ? 'none' : 'block';
         };
 
-        // --- SIGN IN / SIGN UP ---
-        document.getElementById('mainAuthBtn').onclick = async () => {
-            const email = document.getElementById('email').value;
-            const pass = document.getElementById('pass').value;
-            if(!email || !pass) return alert("Details fill karein sweetie! 😘");
+        document.getElementById('authBtn').onclick = async () => {
+            const user = document.getElementById('username').value.toLowerCase().trim();
+            const pass = document.getElementById('password').value;
+            const ref = document.getElementById('refBy').value.toLowerCase().trim();
+            
+            if(!user || !pass) return alert("Fill all fields sweetie! 😘");
+            const uRef = doc(db, "users", user);
+            const snap = await getDoc(uRef);
 
-            try {
-                if(isLoginMode) {
-                    await signInWithEmailAndPassword(auth, email, pass);
-                } else {
-                    const res = await createUserWithEmailAndPassword(auth, email, pass);
-                    await setDoc(doc(db, "users", res.user.uid), { balance: 0, uid: res.user.uid, dailyProfit: 0, activeMachine: "None", lastClaim: 0, email: email });
-                }
-            } catch (e) { alert("Error: " + e.message); }
-        };
-
-        document.getElementById('logoutBtn').onclick = () => signOut(auth).then(()=>location.reload());
-
-        // --- APP LOGIC ---
-        onAuthStateChanged(auth, async (user) => {
-            if(user) {
-                document.getElementById('authSection').classList.remove('active');
-                document.getElementById('dashboardPage').classList.add('active');
-                onSnapshot(doc(db, "users", user.uid), (d) => {
-                    const data = d.data();
-                    document.getElementById('userBal').innerText = data.balance.toFixed(2);
-                    document.getElementById('activeM').innerText = data.activeMachine;
-                    document.getElementById('userName').innerText = data.email.split('@')[0];
-                });
+            if(isLogin) {
+                if(snap.exists() && snap.data().pass === pass) login(user);
+                else alert("Wrong credentials!");
+            } else {
+                if(snap.exists()) return alert("Username taken!");
+                await setDoc(uRef, { user, pass, balance: 0, machine: "None", profit: 0, lastClaim: 0, lastLucky: 0, referredBy: ref || null });
+                login(user);
             }
-        });
-
-        // --- RENDER MACHINES (Example Data) ---
-        const machines = [{n:"Nano",p:200,d:14},{n:"Micro",p:500,d:35},{n:"Silver",p:1000,d:70},{n:"Gold",p:2000,d:150}];
-        const mGrid = document.getElementById('mGrid');
-        machines.forEach((m, i) => {
-            mGrid.innerHTML += `<div class="m-card"><p><b>${m.n}</b></p><p style="color:#10b981;">Daily: ${m.d}</p><button onclick="buyM('${m.n}', ${m.p}, ${m.d})" class="btn-main" style="padding:5px; font-size:0.6rem; margin-top:5px;">PKR ${m.p}</button></div>`;
-        });
-
-        window.buyM = async (name, price, daily) => {
-            const uRef = doc(db, "users", auth.currentUser.uid);
-            const bal = (await getDoc(uRef)).data().balance;
-            if(bal < price) return alert("Paisa kam hai sweetie! 😘");
-            await updateDoc(uRef, { balance: increment(-price), activeMachine: name, dailyProfit: daily });
-            alert(name + " Activated! ✅");
         };
 
-        document.getElementById('taskBtn').onclick = async () => {
-            const uRef = doc(db, "users", auth.currentUser.uid);
-            const d = (await getDoc(uRef)).data();
-            if(d.dailyProfit === 0) return alert("Pehle machine kharidein! ✋");
-            if(Date.now() - d.lastClaim < 86400000) return alert("Kal aana sweetie! ⏳");
-            alert("Mining... 10s wait! ⏳");
-            setTimeout(async () => {
-                await updateDoc(uRef, { balance: increment(d.dailyProfit), lastClaim: Date.now() });
-                alert("Profit Added! 💰");
-            }, 10000);
-        };
+        function login(u) { localStorage.setItem('pakgold_user', u); location.reload(); }
+        window.logout = () => { localStorage.removeItem('pakgold_user'); location.reload(); };
 
-        document.getElementById('txnBtn').onclick = async () => {
-            const amt = Number(document.getElementById('txnAmt').value);
-            const type = document.getElementById('txnType').value;
-            if(type=="Deposit" && amt < 200) return alert("Min 200 Deposit!");
-            await addDoc(collection(db, "transactions"), { uid: auth.currentUser.uid, amount: amt, type: type, status: "pending", timestamp: serverTimestamp() });
-            alert("Request Sent! ✅");
-        };
+        // --- DASHBOARD ---
+        function showDashboard() {
+            document.getElementById('authSection').classList.remove('active');
+            document.getElementById('dashboardPage').classList.add('active');
+            document.getElementById('displayUser').innerText = currentUser;
+            document.getElementById('myCode').innerText = currentUser;
 
-        // --- ADMIN PANEL ---
-        window.adminAccess = () => { if(prompt("Pass:")=="admin123") { document.getElementById('authSection').style.display='none'; document.getElementById('adminPage').classList.add('active'); loadAdmin(); } };
-        function loadAdmin() {
-            onSnapshot(query(collection(db, "transactions"), where("status", "==", "pending")), (s) => {
-                const al = document.getElementById('adminList'); al.innerHTML = "";
-                s.forEach(ds => { const d = ds.data(); al.innerHTML += `<div class="glass-card" style="font-size:0.7rem;">${d.type}: ${d.amount}<button onclick="approve('${ds.id}','${d.uid}',${d.amount},'${d.type}')" class="btn-main" style="padding:5px; background:#10b981; color:white;">Approve</button></div>`; });
+            onSnapshot(doc(db, "users", currentUser), (d) => {
+                const data = d.data();
+                document.getElementById('bal').innerText = data.balance.toFixed(2);
+                document.getElementById('machine').innerText = data.machine;
+            });
+            
+            onSnapshot(doc(db, "settings", "global"), (d) => {
+                if(d.exists()) document.getElementById('adminNotice').innerText = d.data().notice;
             });
         }
-        window.approve = async (id, uid, amt, type) => {
-            await updateDoc(doc(db, "transactions", id), { status: "approved" });
-            const change = type=="Deposit" ? amt : -(amt + (amt*0.05));
-            await updateDoc(doc(db, "users", uid), { balance: increment(change) });
-            alert("Approved! ✅");
+
+        // --- RIGS ---
+        const machines = [
+            {n:"Nano",p:200,d:14,t:"reg"}, {n:"Micro",p:500,d:35,t:"reg"},
+            {n:"Elite",p:1000,d:75,t:"reg"}, {n:"Pro",p:2000,d:160,t:"reg"},
+            {n:"Dragon 🔥",p:3000,d:350,t:"hot"}, {n:"Quantum 🔥",p:10000,d:1500,t:"hot"}
+        ];
+        machines.forEach(m => {
+            document.getElementById('mGrid').innerHTML += `
+                <div class="m-card">
+                    ${m.t=='hot'?'<div class="hot-tag">SPECIAL</div>':''}
+                    <p><b>${m.n}</b></p>
+                    <p style="color:var(--green); font-size:0.6rem;">+PKR ${m.d}/day</p>
+                    <button onclick="buyM('${m.n}',${m.p},${m.d})" class="btn-main" style="padding:5px; margin-top:5px; font-size:0.6rem;">PKR ${m.p}</button>
+                </div>`;
+        });
+
+        window.buyM = async (n, p, d) => {
+            const uRef = doc(db, "users", currentUser);
+            const snap = await getDoc(uRef);
+            if(snap.data().balance < p) return alert("Low balance sweetie! 😘");
+            
+            // Referral Bonus logic
+            if(snap.data().referredBy) {
+                const rRef = doc(db, "users", snap.data().referredBy);
+                if((await getDoc(rRef)).exists()) await updateDoc(rRef, { balance: increment(50) });
+            }
+            
+            await updateDoc(uRef, { balance: increment(-p), machine: n, profit: d });
+            alert(n + " Rig Online! ⚡");
         };
+
+        // --- REWARDS ---
+        document.getElementById('claimBtn').onclick = async () => {
+            const uRef = doc(db, "users", currentUser);
+            const d = (await getDoc(uRef)).data();
+            if(d.profit === 0) return alert("No active rig!");
+            if(Date.now() - d.lastClaim < 86400000) return alert("Wait 24h!");
+            await updateDoc(uRef, { balance: increment(d.profit), lastClaim: Date.now() });
+            alert("Yield Collected! 💰");
+        };
+
+        window.claimLucky = async () => {
+            const uRef = doc(db, "users", currentUser);
+            const d = (await getDoc(uRef)).data();
+            if(Date.now() - d.lastLucky < 86400000) return alert("Tomorrow sweetie! 😘");
+            const prizes = [2, 5, 7, 10, 15, 20, 0];
+            const p = prizes[Math.floor(Math.random()*prizes.length)];
+            if(p===0) alert("Try Next Time! 💔"); else alert("Won PKR "+p+"! 🎉");
+            await updateDoc(uRef, { balance: increment(p), lastLucky: Date.now() });
+        };
+
+        // --- GHOST ADMIN ---
+        let taps = 0;
+        document.getElementById('secretTap').onclick = () => {
+            taps++; if(taps===4) { document.getElementById('adminTrigger').style.display='block'; taps=0; }
+        };
+        window.checkAdmin = () => {
+            if(document.getElementById('adminKey').value === "admin123") {
+                document.getElementById('authSection').style.display='none';
+                document.getElementById('adminPage').classList.add('active');
+            }
+        };
+
+        // --- FAKE PAYOUTS ---
+        setInterval(() => {
+            const names = ["Ali", "Sana", "Hamza", "Zain", "Mehak", "Sara", "Waqas"];
+            const amts = [200, 500, 1000, 1500, 300];
+            document.getElementById('payoutScroll').innerText = `@${names[Math.floor(Math.random()*names.length)]} withdrawn PKR ${amts[Math.floor(Math.random()*amts.length)]} ✅`;
+        }, 3000);
+
+        if(currentUser) enterApp();
     </script>
 </body>
 </html>

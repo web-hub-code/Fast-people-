@@ -2,128 +2,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GB Police Official Mock Test | 2026</title>
+    <title>GB Police Official Examination Portal</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
-        body { font-family: 'Roboto', sans-serif; scroll-behavior: smooth; }
-        .section-card { border-left: 5px solid #1e3a8a; background: white; transition: 0.3s; }
-        .option-box:hover { background-color: #f1f5f9; border-color: #1e3a8a; }
-        input[type="radio"] { accent-color: #1e3a8a; }
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+        body { font-family: 'Poppins', sans-serif; background: #f8fafc; }
+        .question-card { background: white; border-radius: 15px; padding: 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border-left: 6px solid #1e3a8a; margin-bottom: 20px; }
+        .option-item { display: flex; align-items: center; padding: 12px; border: 1px solid #e2e8f0; border-radius: 10px; cursor: pointer; transition: 0.2s; margin-top: 8px; }
+        .option-item:hover { background: #eff6ff; border-color: #1e3a8a; }
+        input[type="radio"] { width: 18px; height: 18px; margin-right: 12px; cursor: pointer; }
     </style>
 </head>
-<body class="bg-gray-100">
+<body>
 
-    <nav class="sticky top-0 z-50 bg-blue-900 text-white p-4 shadow-xl">
+    <header class="bg-blue-900 text-white sticky top-0 z-50 shadow-2xl p-4">
         <div class="max-w-5xl mx-auto flex justify-between items-center">
             <div>
-                <h1 class="font-bold text-xl">GB Police Exam Portal</h1>
-                <p class="text-xs text-blue-300">Constable (BPS-07) Mock Paper</p>
+                <h1 class="text-xl md:text-2xl font-extrabold uppercase tracking-tighter">GB Police Mock 2026</h1>
+                <p class="text-xs text-blue-300 italic">Created by Prime Solutions</p>
             </div>
-            <div class="bg-blue-800 px-4 py-2 rounded-lg font-mono text-lg font-bold text-yellow-400" id="timer">
-                90:00
+            <div class="text-right">
+                <span class="block text-[10px] uppercase font-bold text-blue-200">Time Remaining</span>
+                <div id="timer" class="text-xl font-mono font-bold text-yellow-400">90:00</div>
             </div>
         </div>
-    </nav>
+    </header>
 
-    <div class="max-w-5xl mx-auto p-4 md:p-8">
-        <form id="officialExamForm">
-
-            <div class="section-card p-6 mb-8 rounded-r-xl shadow-md">
-                <h2 class="text-blue-900 font-black text-xl mb-6 border-b pb-2 uppercase italic">Section A: English (20 Marks)</h2>
+    <main class="max-w-4xl mx-auto p-4 mt-6">
+        <form id="fullExamForm">
+            
+            <div class="mb-10">
+                <h2 class="bg-blue-100 text-blue-900 px-4 py-2 rounded-lg font-bold mb-6 inline-block">SECTION A: ENGLISH (20 Marks)</h2>
                 
-                <div class="space-y-6">
-                    <div>
-                        <p class="font-semibold mb-3">1. He is proficient ______ English.</p>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
-                            <label class="option-box p-3 border rounded-lg cursor-pointer flex items-center"><input type="radio" name="q1" value="B" class="mr-2"> In</label>
-                            <label class="option-box p-3 border rounded-lg cursor-pointer flex items-center"><input type="radio" name="q1" value="A" class="mr-2"> At</label>
-                        </div>
-                    </div>
-                    <div>
-                        <p class="font-semibold mb-3">2. Choose the Correct Spelling:</p>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
-                            <label class="option-box p-3 border rounded-lg cursor-pointer flex items-center"><input type="radio" name="q2" value="A" class="mr-2"> Occasion</label>
-                            <label class="option-box p-3 border rounded-lg cursor-pointer flex items-center"><input type="radio" name="q2" value="C" class="mr-2"> Occassion</label>
-                        </div>
-                    </div>
+                <div class="question-card">
+                    <p class="font-bold">1. Find the synonym of "COURAGEOUS":</p>
+                    <label class="option-item"><input type="radio" name="q1" value="A"> Brave</label>
+                    <label class="option-item"><input type="radio" name="q1" value="B"> Fearful</label>
+                    <label class="option-item"><input type="radio" name="q1" value="C"> Weak</label>
+                </div>
+
+                <div class="question-card">
+                    <p class="font-bold">2. He has been living here ______ 2010.</p>
+                    <label class="option-item"><input type="radio" name="q2" value="A"> For</label>
+                    <label class="option-item"><input type="radio" name="q2" value="B"> Since</label>
+                    <label class="option-item"><input type="radio" name="q2" value="C"> From</label>
                 </div>
             </div>
 
-            <div class="section-card p-6 mb-8 rounded-r-xl shadow-md border-l-green-600">
-                <h2 class="text-green-700 font-black text-xl mb-6 border-b pb-2 uppercase italic">Section B: GB Geography & GK (20 Marks)</h2>
+            <div class="mb-10">
+                <h2 class="bg-green-100 text-green-900 px-4 py-2 rounded-lg font-bold mb-6 inline-block">SECTION B: GK & GB GEOGRAPHY (20 Marks)</h2>
                 
-                <div class="space-y-6">
-                    <div>
-                        <p class="font-semibold mb-3">3. K2 is located in which district of GB?</p>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
-                            <label class="option-box p-3 border rounded-lg cursor-pointer flex items-center"><input type="radio" name="q3" value="C" class="mr-2"> Shigar</label>
-                            <label class="option-box p-3 border rounded-lg cursor-pointer flex items-center"><input type="radio" name="q3" value="B" class="mr-2"> Skardu</label>
-                        </div>
-                    </div>
+                <div class="question-card">
+                    <p class="font-bold">3. Which is the highest peak in Gilgit-Baltistan?</p>
+                    <label class="option-item"><input type="radio" name="q3" value="A"> Nanga Parbat</label>
+                    <label class="option-item"><input type="radio" name="q3" value="B"> K2</label>
+                    <label class="option-item"><input type="radio" name="q3" value="C"> Rakaposhi</label>
+                </div>
+
+                <div class="question-card">
+                    <p class="font-bold">4. The "Khunjerab Pass" connects Pakistan with:</p>
+                    <label class="option-item"><input type="radio" name="q4" value="A"> Afghanistan</label>
+                    <label class="option-item"><input type="radio" name="q4" value="B"> China</label>
+                    <label class="option-item"><input type="radio" name="q4" value="C"> India</label>
                 </div>
             </div>
 
-            <div class="section-card p-6 mb-8 rounded-r-xl shadow-md border-l-red-600">
-                <h2 class="text-red-700 font-black text-xl mb-6 border-b pb-2 uppercase italic">Section C: Mathematics & IQ (20 Marks)</h2>
+            <div class="mb-10">
+                <h2 class="bg-yellow-100 text-yellow-900 px-4 py-2 rounded-lg font-bold mb-6 inline-block">SECTION C: ISLAMIYAT (20 Marks)</h2>
                 
-                <div class="space-y-6">
-                    <div>
-                        <p class="font-semibold mb-3">4. Calculate 25% of 80:</p>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
-                            <label class="option-box p-3 border rounded-lg cursor-pointer flex items-center"><input type="radio" name="q4" value="B" class="mr-2"> 20</label>
-                            <label class="option-box p-3 border rounded-lg cursor-pointer flex items-center"><input type="radio" name="q4" value="A" class="mr-2"> 15</label>
-                        </div>
-                    </div>
+                <div class="question-card">
+                    <p class="font-bold">5. How many Madni Surahs are in the Holy Quran?</p>
+                    <label class="option-item"><input type="radio" name="q5" value="A"> 86</label>
+                    <label class="option-item"><input type="radio" name="q5" value="B"> 28</label>
+                    <label class="option-item"><input type="radio" name="q5" value="C"> 114</label>
                 </div>
             </div>
 
-            <div class="fixed bottom-6 right-6">
-                <button type="button" onclick="showResult()" class="bg-blue-900 text-white font-bold py-4 px-8 rounded-full shadow-2xl hover:bg-black transition-all transform hover:scale-105">
-                    Finish Test & Get Marks
-                </button>
+            <div class="mb-10">
+                <h2 class="bg-red-100 text-red-900 px-4 py-2 rounded-lg font-bold mb-6 inline-block">SECTION D: MATH & IQ (20 Marks)</h2>
+                
+                <div class="question-card">
+                    <p class="font-bold">6. Solve: 15% of 200 is?</p>
+                    <label class="option-item"><input type="radio" name="q6" value="A"> 20</label>
+                    <label class="option-item"><input type="radio" name="q6" value="B"> 30</label>
+                    <label class="option-item"><input type="radio" name="q6" value="C"> 40</label>
+                </div>
             </div>
+
+            <button type="button" onclick="submitExam()" class="w-full bg-blue-900 text-white py-5 rounded-2xl font-bold text-xl shadow-xl hover:bg-black transition mb-20">
+                SUBMIT FINAL EXAM
+            </button>
 
         </form>
-    </div>
+    </main>
 
-    <div id="resultBox" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-[100]">
-        <div class="bg-white rounded-3xl p-8 max-w-sm w-full text-center">
-            <h3 class="text-2xl font-bold mb-4">Exam Completed!</h3>
-            <div class="text-6xl font-black text-blue-600 mb-2" id="finalScore">0</div>
-            <p class="text-gray-500 mb-6 font-bold uppercase tracking-widest">Total Marks Scored</p>
-            <button onclick="location.reload()" class="bg-gray-900 text-white w-full py-3 rounded-xl font-bold">Restart Test</button>
+    <div id="resultModal" class="hidden fixed inset-0 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 z-[100]">
+        <div class="bg-white p-10 rounded-3xl max-w-md w-full text-center shadow-2xl">
+            <h2 class="text-2xl font-bold text-gray-800">Exam Results</h2>
+            <div id="percentage" class="text-7xl font-black text-blue-700 my-6">0%</div>
+            <p id="status" class="text-lg font-semibold mb-6 italic"></p>
+            <button onclick="location.reload()" class="bg-blue-900 text-white px-10 py-3 rounded-full font-bold">Try Again</button>
         </div>
     </div>
 
     <script>
-        // Answers Configuration
-        const key = { q1: "B", q2: "A", q3: "C", q4: "B" };
+        const answers = { q1: "A", q2: "B", q3: "B", q4: "B", q5: "B", q6: "B" };
 
-        function showResult() {
+        function submitExam() {
             let score = 0;
-            const totalQuestions = Object.keys(key).length;
-            const form = new FormData(document.getElementById('officialExamForm'));
-            
-            for(let [question, answer] of Object.entries(key)) {
-                if(form.get(question) === answer) {
-                    score++;
-                }
+            const total = Object.keys(answers).length;
+            const form = new FormData(document.getElementById('fullExamForm'));
+
+            for(let key in answers) {
+                if(form.get(key) === answers[key]) score++;
             }
 
-            // Calculate percentage based on 100
-            const final = Math.round((score / totalQuestions) * 100);
-            document.getElementById('finalScore').innerText = final + "/100";
-            document.getElementById('resultBox').classList.remove('hidden');
+            const perc = Math.round((score / total) * 100);
+            document.getElementById('percentage').innerText = perc + "%";
+            document.getElementById('status').innerText = perc >= 50 ? "Mubarak ho! You Passed." : "Hard luck! Try again.";
+            document.getElementById('resultModal').classList.remove('hidden');
         }
 
-        // Timer
-        let seconds = 5400;
+        let time = 5400;
         setInterval(() => {
-            if(seconds <= 0) return;
-            seconds--;
-            let m = Math.floor(seconds / 60);
-            let s = seconds % 60;
+            if(time <= 0) return;
+            time--;
+            let m = Math.floor(time / 60);
+            let s = time % 60;
             document.getElementById('timer').innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
         }, 1000);
     </script>

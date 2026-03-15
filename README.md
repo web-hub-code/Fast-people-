@@ -2,181 +2,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GBTS Official Recruitment Portal | Prime Solutions</title>
+    <title>GB Police Digital Academy | Prime Solutions</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;900&display=swap');
-        body { font-family: 'Outfit', sans-serif; background: #f8fafc; color: #1e293b; }
-        .master-card { background: white; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.05); border-top: 8px solid #1e3a8a; }
-        .option-label { display: flex; align-items: center; padding: 14px; border: 2px solid #f1f5f9; border-radius: 12px; cursor: pointer; margin-top: 8px; transition: 0.3s; }
-        .option-label:hover { border-color: #1e3a8a; background: #f0f7ff; }
-        .correct { background: #dcfce7 !important; border-color: #22c55e !important; color: #166534; }
-        .wrong { background: #fee2e2 !important; border-color: #ef4444 !important; color: #991b1b; }
-        .btn-primary { background: #1e3a8a; color: white; transition: 0.3s; }
-        .btn-primary:hover { background: #1e40af; transform: translateY(-2px); }
-        input[type="radio"] { width: 18px; height: 18px; accent-color: #1e3a8a; margin-right: 10px; }
+        body { font-family: 'Outfit', sans-serif; background: #f1f5f9; }
+        .nav-glass { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); }
+        .level-card { transition: 0.3s; cursor: pointer; border: 2px solid transparent; }
+        .level-card:hover { transform: translateY(-5px); border-color: #1e3a8a; }
+        .book-section { background: #fff; border-left: 8px solid #1e3a8a; padding: 20px; border-radius: 15px; }
+        .locked { opacity: 0.6; grayscale: 1; pointer-events: none; }
+        .tab-content { display: none; }
+        .active-tab { display: block; }
     </style>
 </head>
 <body class="pb-20">
 
-    <div id="welcomeBox" class="fixed inset-0 bg-[#0f172a] z-[150] flex items-center justify-center p-6 text-white text-center">
-        <div class="max-w-4xl">
-            <div class="mb-6 inline-block bg-blue-500/20 p-5 rounded-full">
-                <span class="text-6xl">⚖️</span>
+    <nav class="nav-glass sticky top-0 z-50 p-4 border-b border-slate-200">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div>
+                <h1 class="font-black text-2xl text-blue-900 tracking-tighter italic">PRIME ACADEMY</h1>
+                <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Digital Learning Hub 2026</p>
             </div>
-            <h1 class="text-4xl md:text-6xl font-black mb-4 tracking-tighter">GB POLICE TEST PORTAL</h1>
-            <p class="text-slate-400 font-bold mb-12 uppercase tracking-widest text-sm">Official Preparation & Mock Examination Hub</p>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <button onclick="startApp('practice')" class="bg-white text-slate-900 p-8 rounded-3xl shadow-2xl hover:bg-blue-50 transition">
-                    <b class="text-lg uppercase block">Practice Mode</b>
-                    <p class="text-[10px] text-slate-500 mt-2">Study with instant answer verification</p>
-                </button>
-                <button onclick="startApp('exam')" class="bg-blue-600 text-white p-8 rounded-3xl shadow-2xl hover:bg-blue-700 transition">
-                    <b class="text-lg uppercase block">Mock Exam</b>
-                    <p class="text-[10px] text-blue-100 mt-2">Official 100 Marks timed test</p>
-                </button>
-                <button onclick="window.open('https://wa.me/03705519562')" class="bg-emerald-600 text-white p-8 rounded-3xl shadow-2xl hover:bg-emerald-700 transition">
-                    <b class="text-lg uppercase block">Support</b>
-                    <p class="text-[10px] text-emerald-100 mt-2">Contact Technical Help Line</p>
-                </button>
+            <div class="flex gap-4">
+                <button onclick="switchTab('training')" class="font-bold text-sm text-blue-900 px-4 py-2 border-b-2 border-blue-900">Training Hub</button>
+                <button onclick="switchTab('library')" class="font-bold text-sm text-slate-500 px-4 py-2">Digital Book</button>
+                <button onclick="switchTab('guide')" class="font-bold text-sm text-slate-500 px-4 py-2">Guidelines</button>
             </div>
         </div>
-    </div>
-
-    <nav class="sticky top-0 bg-white/95 backdrop-blur-md shadow-sm p-4 z-50 flex justify-between items-center border-b border-slate-200">
-        <div>
-            <h2 class="font-black text-blue-900 text-2xl tracking-tighter">GBTS PORTAL</h2>
-            <p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Candidate Training System</p>
-        </div>
-        <div id="timer" class="hidden bg-red-600 text-white px-6 py-2 rounded-xl font-black font-mono shadow-lg">90:00</div>
     </nav>
 
-    <div class="bg-blue-900 text-white py-2 text-xs font-bold overflow-hidden border-b border-blue-800">
-        <marquee scrollamount="5">LATEST UPDATES: GB Police Recruitment Test 2026 Expected in May | Registration Deadline: 25 March 2026 | Keep Practicing!</marquee>
-    </div>
+    <main class="max-w-6xl mx-auto p-4 mt-8">
 
-    <main class="max-w-5xl mx-auto p-4 mt-8">
-        
-        <div class="bg-white border-2 border-blue-100 rounded-3xl p-8 mb-10 flex flex-col md:flex-row justify-between items-center gap-6 shadow-sm">
-            <div>
-                <h3 class="font-black text-xl text-blue-900">Physical Fitness Eligibility</h3>
-                <p class="text-slate-500 text-sm">Standard Running: 1.6 KM within 7 Minutes for Male Candidates.</p>
-            </div>
-            <div class="flex gap-3">
-                <input id="runTime" type="number" placeholder="Min" class="w-20 border border-slate-300 p-3 rounded-xl outline-none focus:ring-2 ring-blue-500">
-                <button onclick="checkPhysical()" class="bg-blue-900 text-white px-6 py-3 rounded-xl font-bold uppercase text-xs">Verify</button>
-            </div>
-        </div>
-
-        <div class="master-card p-6 md:p-12">
-            <div id="quizContainer">
+        <div id="training" class="tab-content active-tab">
+            <h2 class="text-3xl font-black text-slate-800 mb-8 uppercase italic tracking-tighter">Mission: 10 Levels to Success</h2>
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+                <div onclick="startLevel(1)" class="level-card bg-white p-6 rounded-3xl shadow-sm text-center">
+                    <span class="text-4xl">🛡️</span>
+                    <h3 class="font-black mt-4">Level 01</h3>
+                    <p class="text-[10px] text-slate-400">Basic General Knowledge</p>
                 </div>
-            <button onclick="showResult()" class="w-full btn-primary py-6 rounded-2xl font-black text-2xl shadow-xl mt-12 uppercase tracking-widest">
-                Submit Examination
-            </button>
+                <script>
+                    for(let i=2; i<=10; i++) {
+                        document.write(`
+                            <div class="level-card bg-white p-6 rounded-3xl shadow-sm text-center">
+                                <span class="text-4xl text-slate-300">🔒</span>
+                                <h3 class="font-black mt-4 text-slate-400">Level 0${i}</h3>
+                                <p class="text-[10px] text-slate-400">Locked - Finish Previous</p>
+                            </div>
+                        `);
+                    }
+                </script>
+            </div>
         </div>
+
+        <div id="library" class="tab-content">
+            <h2 class="text-3xl font-black text-slate-800 mb-8 uppercase italic tracking-tighter">Candidate Study Material</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="book-section">
+                    <h4 class="font-black text-blue-900 text-xl mb-4 underline">English Grammar Guide</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        1. <b>Prepositions:</b> Use 'Senior to', 'Junior to', 'Afraid of'.<br>
+                        2. <b>Synonyms:</b> Brave = Courageous, Fast = Quick.<br>
+                        3. <b>Spelling:</b> Always remember 'Lieutenant' and 'Maintenance'.
+                    </p>
+                </div>
+                <div class="book-section border-green-700">
+                    <h4 class="font-black text-green-700 text-xl mb-4 underline">Urdu Mazmoon Guide</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Mazmoon likhte waqt 3 hissay banayein:<br>
+                        1. <b>Tamheed:</b> Topic ka taaruf.<br>
+                        2. <b>Nafs-e-Mazmoon:</b> Detail (Faide aur Nuqsan).<br>
+                        3. <b>Ikhtitam:</b> Nateeja (Result).
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div id="guide" class="tab-content">
+            <h2 class="text-3xl font-black text-slate-800 mb-8 uppercase italic tracking-tighter">Unlimited Guidelines</h2>
+            <div class="space-y-4">
+                <details class="bg-white p-6 rounded-3xl shadow-sm cursor-pointer">
+                    <summary class="font-black text-blue-900">Physical Test Instructions (Running/Chest)</summary>
+                    <p class="mt-4 text-sm text-slate-600">Male candidates must cover 1.6KM in 7 minutes. Running practice should be done early morning on an empty stomach.</p>
+                </details>
+                <details class="bg-white p-6 rounded-3xl shadow-sm cursor-pointer">
+                    <summary class="font-black text-blue-900">Required Documents List</summary>
+                    <p class="mt-4 text-sm text-slate-600">CNIC, Domicile (GB), Academic Certificates, and 4 Passport size photographs with blue background.</p>
+                </details>
+                <details class="bg-white p-6 rounded-3xl shadow-sm cursor-pointer">
+                    <summary class="font-black text-blue-900">Interview Tips</summary>
+                    <p class="mt-4 text-sm text-slate-600">Dress professionally (Pent shirt or Shalwar Kameez with Waistcoat). Be confident and keep eye contact with the board members.</p>
+                </details>
+            </div>
+        </div>
+
     </main>
 
-    <div id="resPortal" class="hidden fixed inset-0 bg-slate-900/98 backdrop-blur-2xl z-[200] flex items-center justify-center p-6 text-white">
-        <div class="max-w-sm w-full text-center">
-            <h3 class="text-blue-400 font-bold uppercase tracking-widest text-xs mb-2">Final Performance Card</h3>
-            <div id="finalScore" class="text-9xl font-black mb-6">0%</div>
-            <p id="gradeMsg" class="font-bold text-lg mb-10 text-slate-300"></p>
-            <div class="space-y-4">
-                <button onclick="location.reload()" class="w-full bg-white text-slate-900 py-4 rounded-xl font-black uppercase">Restart Test</button>
-                <button onclick="window.print()" class="w-full border border-slate-700 py-4 rounded-xl font-bold uppercase hover:bg-slate-800">Download Result</button>
-            </div>
+    <div id="testOverlay" class="hidden fixed inset-0 bg-white z-[100] p-6 overflow-y-auto">
+        <button onclick="closeTest()" class="text-red-600 font-bold mb-8 uppercase tracking-widest text-sm">← Back to Academy</button>
+        <div class="max-w-3xl mx-auto">
+            <h2 id="levelTitle" class="text-4xl font-black text-blue-900 mb-10">LEVEL 01: BEGINNER</h2>
+            <div id="paperContent" class="space-y-8">
+                </div>
+            <button onclick="alert('Congratulations! Level Completed.')" class="w-full bg-blue-900 text-white py-6 rounded-2xl mt-12 font-black">SUBMIT LEVEL</button>
         </div>
     </div>
 
     <script>
-        const database = [
-            { q: "Which glacier is the longest in Gilgit-Baltistan?", a: "Biafo", b: "Siachen", ans: "b", cat: "General Knowledge" },
-            { q: "Identify the correct spelling:", a: "Lieutenant", b: "Leftenant", ans: "a", cat: "English" },
-            { q: "Zakat was made compulsory in which Hijri year?", a: "2 Hijri", b: "3 Hijri", ans: "a", cat: "Islamiyat" },
-            { q: "What is the capital city of Gilgit-Baltistan?", a: "Skardu", b: "Gilgit", ans: "b", cat: "GB Geography" },
-            { q: "He is senior ______ me in rank.", a: "Than", b: "To", ans: "b", cat: "English" },
-            { q: "Solve the equation: 25 * 4 / 2", a: "50", b: "100", ans: "a", cat: "Mathematics" },
-            { q: "Who is the first poet of the Urdu language?", a: "Amir Khusro", b: "Mirza Ghalib", ans: "a", cat: "Urdu" },
-            { q: "K2 peak is located in which mountain range?", a: "Himalayas", b: "Karakoram", ans: "b", cat: "GB Geography" },
-            { q: "The Battle of Badr was fought in:", a: "2 Hijri", b: "4 Hijri", ans: "a", cat: "Islamiyat" },
-            { q: "15% of 2000 is:", a: "300", b: "250", ans: "a", cat: "Mathematics" }
-        ];
-
-        let mode = '';
-        let timerVal = 5400;
-
-        function speak(text) {
-            let msg = new SpeechSynthesisUtterance(text);
-            msg.rate = 0.9;
-            window.speechSynthesis.speak(msg);
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active-tab'));
+            document.getElementById(tabId).classList.add('active-tab');
         }
 
-        function startApp(m) {
-            mode = m;
-            document.getElementById('welcomeBox').style.display = 'none';
-            if(mode === 'exam') {
-                document.getElementById('timer').classList.remove('hidden');
-                startTimer();
-            } else {
-                speak("Practice mode activated. You can now verify answers instantly.");
-            }
-            renderQuestions();
+        function startLevel(level) {
+            document.getElementById('testOverlay').classList.remove('hidden');
+            document.getElementById('levelTitle').innerText = "LEVEL 0" + level + ": MISSION START";
+            renderPaper();
         }
 
-        function renderQuestions() {
-            const container = document.getElementById('quizContainer');
-            const shuffled = database.sort(() => Math.random() - 0.5);
-            container.innerHTML = '';
-            
-            shuffled.forEach((item, i) => {
-                const html = `
-                    <div class="q-card">
-                        <span class="bg-slate-100 text-slate-600 text-[10px] font-black px-3 py-1 rounded-md uppercase">${item.cat}</span>
-                        <h4 class="text-lg font-bold text-slate-800 mt-3">Q${i+1}. ${item.q}</h4>
-                        <div class="mt-4 space-y-2">
-                            <label class="option-label" id="q${i}a_l"><input type="radio" name="q${i}" value="a" onchange="checkAns(this, '${item.ans}', 'q${i}a_l')"> ${item.a}</label>
-                            <label class="option-label" id="q${i}b_l"><input type="radio" name="q${i}" value="b" onchange="checkAns(this, '${item.ans}', 'q${i}b_l')"> ${item.b}</label>
-                        </div>
+        function closeTest() {
+            document.getElementById('testOverlay').classList.add('hidden');
+        }
+
+        function renderPaper() {
+            const paper = document.getElementById('paperContent');
+            paper.innerHTML = `
+                <div class="p-8 border-2 border-slate-100 rounded-[40px] shadow-sm">
+                    <p class="font-bold text-xl">Q1. What is the main range of K2 peak?</p>
+                    <div class="grid grid-cols-2 gap-4 mt-6">
+                        <label class="p-4 border-2 rounded-2xl cursor-pointer hover:bg-blue-50"><input type="radio" name="q1"> Karakoram</label>
+                        <label class="p-4 border-2 rounded-2xl cursor-pointer hover:bg-blue-50"><input type="radio" name="q1"> Himalayas</label>
                     </div>
-                `;
-                container.insertAdjacentHTML('beforeend', html);
-            });
-        }
-
-        function checkAns(input, correct, labelId) {
-            if(mode === 'practice') {
-                const label = document.getElementById(labelId);
-                if(input.value === correct) {
-                    label.classList.add('correct');
-                } else {
-                    label.classList.add('wrong');
-                }
-            }
-        }
-
-        function checkPhysical() {
-            let t = document.getElementById('runTime').value;
-            if(!t) return alert("Please enter time in minutes.");
-            if(t <= 7) alert("Congratulations! You meet the physical eligibility criteria.");
-            else alert("Warning: You must complete 1.6KM in under 7 minutes to qualify.");
-        }
-
-        function startTimer() {
-            setInterval(() => {
-                if(timerVal <= 0) return;
-                timerVal--;
-                let m = Math.floor(timerVal/60); let s = timerVal%60;
-                document.getElementById('timer').innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
-            }, 1000);
-        }
-
-        function showResult() {
-            document.getElementById('resPortal').classList.remove('hidden');
-            let score = 80; // Placeholder for calculation logic
-            document.getElementById('finalScore').innerText = score + "%";
-            document.getElementById('gradeMsg').innerText = "Examination successfully submitted. Evaluation complete.";
+                </div>
+            `;
         }
     </script>
 </body>

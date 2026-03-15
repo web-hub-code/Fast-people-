@@ -2,80 +2,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GB Police Recruitment - Online Test</title>
+    <title>GB Police Exam Portal | Prime Solutions</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-        body { font-family: 'Poppins', sans-serif; background: #f0f2f5; }
-        .glass-card { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-radius: 20px; box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15); }
-        .timer-badge { background: #e11d48; color: white; padding: 5px 15px; border-radius: 50px; font-weight: bold; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; }
+        .quiz-container { max-width: 800px; margin: 2rem auto; }
+        .option-label { transition: all 0.2s; border: 2px solid #e5e7eb; }
+        .option-label:hover { border-color: #2563eb; background-color: #eff6ff; }
+        input[type="radio"]:checked + span { color: #2563eb; font-weight: 600; }
     </style>
 </head>
-<body class="p-4 md:p-8">
+<body class="p-4">
 
-    <div class="max-w-4xl mx-auto">
-        <div class="glass-card p-6 mb-6 flex flex-col md:flex-row justify-between items-center bg-blue-900 text-white">
-            <div>
-                <h1 class="text-2xl font-bold uppercase tracking-wider">GB Police Recruitment 2026</h1>
-                <p class="text-blue-200 text-sm">Post: Constable (BPS-07) - Mock Test</p>
-            </div>
-            <div class="mt-4 md:mt-0 text-center">
-                <span class="text-xs block uppercase">Remaining Time</span>
-                <div class="timer-badge" id="timer">90:00</div>
+    <div class="quiz-container">
+        <div class="bg-blue-900 text-white p-6 rounded-t-2xl shadow-lg">
+            <h1 class="text-2xl font-bold">GB Police Recruitment Test 2026</h1>
+            <p class="text-blue-200">Total Marks: 100 | Subject: All-in-One Mock Paper</p>
+            <div class="mt-4 flex justify-between items-center bg-blue-800 p-3 rounded-lg">
+                <span>Time Remaining: <span id="timer" class="font-mono font-bold text-yellow-400">90:00</span></span>
+                <span id="score-display" class="hidden font-bold">Score: 0/100</span>
             </div>
         </div>
 
-        <form id="quiz-form" class="space-y-6">
+        <form id="quizForm" class="bg-white p-6 rounded-b-2xl shadow-md space-y-8">
             
-            <div class="glass-card p-6 border-l-8 border-blue-600">
-                <p class="font-semibold text-lg mb-4">Q1: Which mountain peak is known as "Savage Mountain" and located in Gilgit-Baltistan?</p>
-                <div class="space-y-3">
-                    <label class="flex items-center p-3 border rounded-lg hover:bg-blue-50 cursor-pointer transition">
-                        <input type="radio" name="q1" value="a" class="w-4 h-4 text-blue-600">
-                        <span class="ml-3">Nanga Parbat</span>
-                    </label>
-                    <label class="flex items-center p-3 border rounded-lg hover:bg-blue-50 cursor-pointer transition">
-                        <input type="radio" name="q1" value="b" class="w-4 h-4 text-blue-600">
-                        <span class="ml-3">K2</span>
-                    </label>
-                    <label class="flex items-center p-3 border rounded-lg hover:bg-blue-50 cursor-pointer transition">
-                        <input type="radio" name="q1" value="c" class="w-4 h-4 text-blue-600">
-                        <span class="ml-3">Rakaposhi</span>
-                    </label>
+            <div class="border-b pb-6">
+                <h2 class="text-blue-700 font-bold mb-4 uppercase text-sm tracking-widest">Section A: English</h2>
+                <p class="mb-4 font-medium">1. Choose the correct spelling:</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <label class="option-label p-3 rounded-xl cursor-pointer"><input type="radio" name="q1" value="0"> Commitee</label>
+                    <label class="option-label p-3 rounded-xl cursor-pointer"><input type="radio" name="q1" value="1"> Committee</label>
                 </div>
             </div>
 
-            <div class="glass-card p-6 border-l-8 border-green-600">
-                <p class="font-semibold text-lg mb-4">Q2: Change into Passive Voice: "He is driving a car."</p>
-                <div class="space-y-3">
-                    <label class="flex items-center p-3 border rounded-lg hover:bg-blue-50 cursor-pointer transition">
-                        <input type="radio" name="q2" value="a" class="w-4 h-4 text-blue-600">
-                        <span class="ml-3">A car is driven by him.</span>
-                    </label>
-                    <label class="flex items-center p-3 border rounded-lg hover:bg-blue-50 cursor-pointer transition">
-                        <input type="radio" name="q2" value="b" class="w-4 h-4 text-blue-600">
-                        <span class="ml-3">A car is being driven by him.</span>
-                    </label>
+            <div class="border-b pb-6">
+                <h2 class="text-blue-700 font-bold mb-4 uppercase text-sm tracking-widest">Section B: General Knowledge</h2>
+                <p class="mb-4 font-medium">2. Which is the largest district of Gilgit-Baltistan by area?</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <label class="option-label p-3 rounded-xl cursor-pointer"><input type="radio" name="q2" value="0"> Gilgit</label>
+                    <label class="option-label p-3 rounded-xl cursor-pointer"><input type="radio" name="q2" value="1"> Ghanche</label>
                 </div>
             </div>
 
-            <div class="text-center pb-10">
-                <button type="submit" class="bg-blue-700 hover:bg-blue-800 text-white font-bold py-3 px-10 rounded-full shadow-lg transform transition hover:scale-105">
-                    Submit Final Test
-                </button>
+            <div class="border-b pb-6">
+                <h2 class="text-blue-700 font-bold mb-4 uppercase text-sm tracking-widest">Section C: Islamiyat</h2>
+                <p class="mb-4 font-medium">3. How many Ghazwas are mentioned in the Holy Quran?</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <label class="option-label p-3 rounded-xl cursor-pointer"><input type="radio" name="q3" value="0"> 12</label>
+                    <label class="option-label p-3 rounded-xl cursor-pointer"><input type="radio" name="q3" value="1"> 27</label>
+                </div>
             </div>
+
+            <button type="button" onclick="calculateScore()" class="w-full bg-green-600 text-white font-bold py-4 rounded-xl hover:bg-green-700 transition shadow-lg">
+                FINISH & SHOW RESULT
+            </button>
         </form>
+
+        <div id="resultModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
+            <div class="bg-white p-8 rounded-2xl max-w-sm w-full text-center">
+                <h2 class="text-3xl font-bold mb-2">Test Completed!</h2>
+                <p class="text-gray-600 mb-6">Your total marks are:</p>
+                <div id="finalScore" class="text-5xl font-black text-blue-600 mb-6">0</div>
+                <button onclick="location.reload()" class="bg-blue-600 text-white px-6 py-2 rounded-lg">Retake Test</button>
+            </div>
+        </div>
     </div>
 
     <script>
-        // Simple Timer Script
-        let time = 5400; // 90 minutes
-        const timerEl = document.getElementById('timer');
+        // Correct Answers Matrix
+        const answers = { q1: "1", q2: "1", q3: "1" };
+
+        function calculateScore() {
+            let score = 0;
+            const form = document.forms['quizForm'];
+            
+            // Logic to check answers
+            if(form['q1'].value === answers.q1) score += 33;
+            if(form['q2'].value === answers.q2) score += 33;
+            if(form['q3'].value === answers.q3) score += 34;
+
+            document.getElementById('finalScore').innerText = score + "/100";
+            document.getElementById('resultModal').classList.remove('hidden');
+        }
+
+        // Timer Logic
+        let timeLeft = 5400;
         setInterval(() => {
-            let minutes = Math.floor(time / 60);
-            let seconds = time % 60;
-            timerEl.innerHTML = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-            if (time > 0) time--;
+            if(timeLeft <= 0) return;
+            timeLeft--;
+            let mins = Math.floor(timeLeft / 60);
+            let secs = timeLeft % 60;
+            document.getElementById('timer').innerText = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
         }, 1000);
     </script>
 </body>

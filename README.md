@@ -2,291 +2,234 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GB Police Elite Prep | Muhammad Nazim</title>
+    <title>GB Police Dark Portal | Muhammad Nazim</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-deep: #050b18;
-            --glass-bg: rgba(30, 41, 59, 0.7);
-            --accent-neon: #00f2ff;
-            --accent-glow: rgba(0, 242, 255, 0.5);
-            --text-silver: #cbd5e1;
-            --success-neon: #39ff14;
+            /* Ultra Dark Palette */
+            --pure-black: #020617;
+            --card-dark: #0f172a;
+            --accent-cyan: #22d3ee;
+            --accent-purple: #818cf8;
+            --text-silver: #94a3b8;
+            --text-white: #f8fafc;
+            --neon-border: rgba(34, 211, 238, 0.3);
         }
 
         body {
             font-family: 'Poppins', 'Noto Nastaliq Urdu', sans-serif;
-            background-color: var(--bg-deep);
-            background-image: radial-gradient(circle at 50% 50%, #1e293b 0%, #050b18 100%);
-            color: white;
+            background-color: var(--pure-black);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(129, 140, 248, 0.05) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(34, 211, 238, 0.05) 0px, transparent 50%);
+            color: var(--text-white);
             margin: 0;
             padding: 0;
-            overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        /* Animated Header */
+        /* Dark Header with Glassmorphism */
         header {
-            height: 300px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(45deg, rgba(15, 23, 42, 0.9), rgba(5, 11, 24, 0.9));
-            border-bottom: 2px solid var(--accent-neon);
-            box-shadow: 0 0 30px var(--accent-glow);
-            position: relative;
+            padding: 60px 20px;
+            text-align: center;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--neon-border);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
         }
 
         header h1 {
-            font-size: 3rem;
+            font-size: 2.8rem;
             margin: 0;
-            background: linear-gradient(to right, #fff, var(--accent-neon));
+            background: linear-gradient(to right, var(--accent-cyan), var(--accent-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 15px var(--accent-glow);
-            letter-spacing: 2px;
+            filter: drop-shadow(0 0 10px rgba(34, 211, 238, 0.5));
         }
 
-        .user-info {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 5px 20px;
-            border-radius: 50px;
-            border: 1px solid var(--accent-neon);
+        .status-badge {
+            display: inline-block;
             margin-top: 15px;
-            font-size: 0.9rem;
-            backdrop-filter: blur(5px);
-        }
-
-        /* Futuristic Nav */
-        .section-nav {
-            position: sticky;
-            top: 20px;
-            z-index: 100;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: -30px auto 50px;
-            padding: 10px;
-        }
-
-        .nav-btn {
-            background: var(--glass-bg);
-            color: white;
-            padding: 12px 25px;
-            border-radius: 12px;
-            text-decoration: none;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(15px);
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            font-weight: 500;
-        }
-
-        .nav-btn:hover {
-            border-color: var(--accent-neon);
-            box-shadow: 0 0 20px var(--accent-glow);
-            transform: scale(1.1);
-            color: var(--accent-neon);
+            padding: 5px 15px;
+            background: rgba(34, 211, 238, 0.1);
+            border: 1px solid var(--accent-cyan);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--accent-cyan);
         }
 
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
         }
 
-        .category-title {
-            font-size: 2rem;
-            margin: 60px 0 30px;
+        /* Dark Navigation */
+        .section-nav {
             display: flex;
-            align-items: center;
+            justify-content: center;
             gap: 15px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
         }
 
-        .category-title::after {
-            content: '';
-            height: 2px;
-            flex-grow: 1;
-            background: linear-gradient(to left, var(--accent-neon), transparent);
+        .nav-link {
+            background: var(--card-dark);
+            color: var(--text-silver);
+            padding: 12px 25px;
+            border-radius: 12px;
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s ease;
         }
 
-        /* Modern Grid & Cards */
+        .nav-link:hover {
+            background: var(--accent-cyan);
+            color: var(--pure-black);
+            box-shadow: 0 0 20px rgba(34, 211, 238, 0.4);
+            transform: translateY(-3px);
+        }
+
+        .category-header {
+            color: var(--accent-cyan);
+            border-right: 4px solid var(--accent-cyan);
+            padding-right: 15px;
+            margin: 50px 0 25px;
+            font-size: 1.8rem;
+        }
+
+        /* Dark Mode Cards */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
         }
 
         .card {
-            background: var(--glass-bg);
+            background: var(--card-dark);
+            border: 1px solid rgba(255,255,255,0.05);
             padding: 25px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            cursor: pointer;
-            transition: 0.3s;
+            border-radius: 16px;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
+        }
+
+        .card:hover {
+            border-color: var(--accent-cyan);
+            background: rgba(30, 41, 59, 0.8);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+            transform: scale(1.02);
         }
 
         .card::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, transparent, rgba(0, 242, 255, 0.05));
-            pointer-events: none;
+            top: 0; left: 0; width: 4px; height: 100%;
+            background: var(--accent-cyan);
+            opacity: 0;
+            transition: 0.3s;
         }
 
-        .card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent-neon);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        .card:hover::before {
+            opacity: 1;
         }
 
-        .q-num {
-            color: var(--accent-neon);
-            font-size: 0.7rem;
+        .q-tag {
+            color: var(--accent-purple);
+            font-size: 0.75rem;
+            font-weight: bold;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
             display: block;
+            margin-bottom: 10px;
         }
 
-        .question {
-            font-size: 1.2rem;
-            line-height: 1.8;
+        .question-text {
+            font-size: 1.15rem;
+            color: var(--text-white);
             margin-bottom: 15px;
             display: block;
         }
 
-        /* Interactive Answer System */
-        .answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease-out, opacity 0.3s;
-            opacity: 0;
-            color: var(--success-neon);
-            background: rgba(57, 255, 20, 0.05);
-            border-radius: 10px;
-            padding: 0 15px;
-            margin-top: 10px;
-            display: flex;
-            align-items: center;
-            height: 50px;
-        }
-
-        .card.active .answer {
-            max-height: 100px;
-            opacity: 1;
+        .ans-box {
+            background: rgba(34, 211, 238, 0.05);
+            color: var(--accent-cyan);
             padding: 10px 15px;
-            border: 1px dashed var(--success-neon);
-        }
-
-        .click-hint {
-            font-size: 0.7rem;
-            color: var(--text-silver);
-            font-style: italic;
-            margin-top: 10px;
-            display: block;
-            text-align: left;
+            border-radius: 8px;
+            border-right: 3px solid var(--accent-cyan);
+            font-weight: 500;
         }
 
         footer {
-            margin-top: 100px;
-            padding: 50px;
-            background: rgba(0,0,0,0.5);
             text-align: center;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            padding: 60px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: var(--text-silver);
+            margin-top: 80px;
         }
 
-        .pulse {
-            animation: pulse-animation 2s infinite;
-        }
+        /* Custom Scrollbar for Dark Mode */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--pure-black); }
+        ::-webkit-scrollbar-thumb { background: var(--card-dark); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent-cyan); }
 
-        @keyframes pulse-animation {
-            0% { box-shadow: 0 0 0 0px rgba(0, 242, 255, 0.4); }
-            100% { box-shadow: 0 0 0 20px rgba(0, 242, 255, 0); }
-        }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>GB POLICE ELITE</h1>
-    <div class="user-info">
-        👤 <b>Muhammad Nazim</b> | 📍 Astore | 🎖️ Foot Constable Prep
-    </div>
+    <h1>GB POLICE PORTAL</h1>
+    <div class="status-badge">● Candidate: Muhammad Nazim | Post: Foot Constable</div>
 </header>
 
 <div class="container">
     <div class="section-nav">
-        <a href="#islamiyat" class="nav-btn">اسلامیات</a>
-        <a href="#pakstudies" class="nav-btn">مطالعہ پاکستان</a>
-        <a href="#gk" class="nav-btn">جنرل نالج</a>
+        <a href="#" class="nav-link">اسلامیات</a>
+        <a href="#" class="nav-link">مطالعہ پاکستان</a>
+        <a href="#" class="nav-link">جنرل نالج</a>
+        <a href="#" class="nav-link">ریاضی</a>
     </div>
 
-    <h2 id="islamiyat" class="category-title">🌙 اسلامیات</h2>
+    <h2 class="category-header">🌙 اسلامیات (Deep Dark Mode)</h2>
     <div class="grid">
-        <div class="card" onclick="toggleAnswer(this)">
-            <span class="q-num">Question 01</span>
-            <span class="question">اسلام قبول کرنے والے پہلے رومی صحابی کون تھے؟</span>
-            <div class="answer">حضرت صہیب رومی (R.A)</div>
-            <span class="click-hint">جواب دیکھنے کے لیے کلک کریں...</span>
+        <div class="card">
+            <span class="q-tag">Question</span>
+            <span class="question-text">پہلے حافظ قرآن صحابی کا نام بتائیں؟</span>
+            <div class="ans-box">حضرت عثمان غنی (R.A)</div>
         </div>
 
-        <div class="card" onclick="toggleAnswer(this)">
-            <span class="q-num">Question 02</span>
-            <span class="question">پہلے حافظ قرآن صحابی کا نام بتائیں:</span>
-            <div class="answer">حضرت عثمان غنی (R.A)</div>
-            <span class="click-hint">جواب دیکھنے کے لیے کلک کریں...</span>
+        <div class="card">
+            <span class="q-tag">Question</span>
+            <span class="question-text">اسلام قبول کرنے والے پہلے رومی صحابی؟</span>
+            <div class="ans-box">حضرت صہیب رومی (R.A)</div>
         </div>
-        
-        <div class="card" onclick="toggleAnswer(this)">
-            <span class="q-num">Question 03</span>
-            <span class="question">غزوہ خندق میں مدینہ کا محاصرہ کتنے دن رہا؟</span>
-            <div class="answer">30 دن</div>
-            <span class="click-hint">جواب دیکھنے کے لیے کلک کریں...</span>
+
+        <div class="card">
+            <span class="q-tag">Question</span>
+            <span class="question-text">غزوہ خندق میں مدینہ کا محاصرہ کتنے دن رہا؟</span>
+            <div class="ans-box">30 دن</div>
         </div>
     </div>
 
-    <h2 id="pakstudies" class="category-title">🇵🇰 مطالعہ پاکستان</h2>
+    <h2 class="category-header">🇵🇰 مطالعہ پاکستان</h2>
     <div class="grid">
-        <div class="card" onclick="toggleAnswer(this)">
-            <span class="q-num">Geo-Data</span>
-            <span class="question">واخان کی پٹی پاکستان کو کس ملک سے الگ کرتی ہے؟</span>
-            <div class="answer">تاجکستان</div>
-            <span class="click-hint">جواب دیکھنے کے لیے کلک کریں...</span>
+        <div class="card">
+            <span class="q-tag">Geography</span>
+            <span class="question-text">پاکستان کا کل رقبہ کتنا ہے؟</span>
+            <div class="ans-box">796,096 مربع کلومیٹر</div>
         </div>
-        <div class="card" onclick="toggleAnswer(this)">
-            <span class="q-num">Constitution</span>
-            <span class="question">1973 کے آئین کی تیاری کے لیے کتنے ارکان تھے؟</span>
-            <div class="answer">25 ارکان</div>
-            <span class="click-hint">جواب دیکھنے کے لیے کلک کریں...</span>
+        <div class="card">
+            <span class="q-tag">History</span>
+            <span class="question-text">اردو ہندی تنازعہ کب شروع ہوا؟</span>
+            <div class="ans-box">1867 میں</div>
         </div>
     </div>
 </div>
 
 <footer>
-    <p>Powered by <b>Prime Solutions</b> Portfolio System</p>
-    <p style="font-size: 0.8rem; color: var(--accent-neon);">© 2026 Futuristic Recruitment Portal</p>
+    <p>Created by <b>Prime Solutions</b> | Dark Ops Edition</p>
 </footer>
-
-<script>
-    function toggleAnswer(card) {
-        // Close other cards (optional)
-        // document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
-        
-        // Toggle current card
-        card.classList.toggle('active');
-        
-        // Update hint text
-        const hint = card.querySelector('.click-hint');
-        if(card.classList.contains('active')) {
-            hint.style.display = 'none';
-        } else {
-            hint.style.display = 'block';
-        }
-    }
-</script>
 
 </body>
 </html>

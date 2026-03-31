@@ -1,190 +1,187 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang="ur" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GBTS Elite | Master System</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <title>GB Police Test Prep | Muhammad Nazim</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;900&display=swap');
-        body { font-family: 'Outfit', sans-serif; background: #070b14; color: white; margin: 0; }
-        .glass { background: rgba(255,255,255,0.03); backdrop-blur: 15px; border: 1px solid rgba(255,255,255,0.08); border-radius: 40px; }
-        .tab-content { display: none; }
-        .active-tab { display: block; }
-        .lvl-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; transition: 0.3s; cursor: pointer; }
-        .lvl-card:hover:not(.locked) { border-color: #3b82f6; transform: translateY(-5px); }
-        .locked { opacity: 0.2; filter: grayscale(1); cursor: not-allowed; }
+        :root {
+            --primary: #0f172a;
+            --secondary: #1e293b;
+            --accent: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-dim: #94a3b8;
+            --success: #22c55e;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--primary);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(to bottom, #1e293b, #0f172a);
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.2rem;
+            color: var(--accent);
+            text-transform: uppercase;
+        }
+
+        header p {
+            color: var(--text-dim);
+            margin-top: 10px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .section-nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .nav-btn {
+            background: var(--secondary);
+            color: var(--text-main);
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            border: 1px solid var(--accent);
+            transition: 0.3s;
+        }
+
+        .nav-btn:hover {
+            background: var(--accent);
+            color: var(--primary);
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            border-right: 5px solid var(--accent);
+            padding-right: 15px;
+            margin: 40px 0 20px;
+            color: var(--accent);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--secondary);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .q-num {
+            color: var(--accent);
+            font-size: 0.8rem;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .question {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .answer {
+            color: var(--success);
+            font-weight: 500;
+            background: rgba(34, 197, 94, 0.1);
+            padding: 8px 12px;
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
 
-    <div id="loader" class="fixed inset-0 bg-[#070b14] z-[10000] flex items-center justify-center font-black italic tracking-widest text-blue-500">
-        LOADING ACADEMY...
+<header>
+    <h1>GB Police Recruitment Portal</h1>
+    <p>Candidate: Muhammad Nazim | District: Astore | Post: Foot Constable</p>
+</header>
+
+<div class="container">
+    <div class="section-nav">
+        <a href="#islamiyat" class="nav-btn">اسلامیات</a>
+        <a href="#pakstudies" class="nav-btn">مطالعہ پاکستان</a>
+        <a href="#gk" class="nav-btn">جنرل نالج</a>
+        <a href="#math" class="nav-btn">ریاضی</a>
     </div>
 
-    <div id="loginOverlay" class="fixed inset-0 bg-[#070b14] z-[9999] flex items-center justify-center p-6 hidden">
-        <div class="glass p-12 max-w-md w-full text-center">
-            <h2 class="text-3xl font-black mb-8 italic">GBTS ENTRANCE</h2>
-            <input id="uName" type="text" placeholder="Your Name" class="w-full p-6 bg-white/5 rounded-3xl mb-6 text-center outline-none border-2 border-transparent focus:border-blue-500 text-white">
-            <button onclick="handleLogin()" class="w-full bg-blue-600 py-6 rounded-3xl font-black text-xl shadow-lg">ENTER PORTAL</button>
-        </div>
+    <h2 id="islamiyat" class="category-title">اسلامیات (Islamiyat)</h2>
+    <div class="grid">
+        <div class="card"><span class="q-num">سوال</span><span class="question">اسلام قبول کرنے والے پہلے رومی:</span><div class="answer">حضرت صہیب رومی (R.A)</div></div>
+        <div class="card"><span class="q-num">سوال</span><span class="question">پہلے حافظ قرآن صحابی:</span><div class="answer">حضرت عثمان غنی (R.A)</div></div>
+        <div class="card"><span class="q-num">سوال</span><span class="question">غزوہ خندق میں مدینہ کا محاصرہ رہا:</span><div class="answer">30 دن</div></div>
+        <div class="card"><span class="q-num">سوال</span><span class="question">فتح مکہ کے موقع پر تلاوت کی گئی سورہ:</span><div class="answer">سورہ الفتح</div></div>
+        <div class="card"><span class="q-num">سوال</span><span class="question">پہلا اسلامی جھنڈا کس رنگ کا تھا؟</span><div class="answer">سفید</div></div>
     </div>
 
-    <nav class="p-6 border-b border-white/5 flex justify-between items-center glass m-4">
-        <div class="font-black italic text-blue-500">GBTS ELITE</div>
-        <div class="flex gap-6 text-[10px] font-black uppercase italic">
-            <button onclick="showTab('dashTab')">Training</button>
-            <button onclick="showTab('rankTab')">Ranks</button>
-            <button onclick="logout()" class="text-red-500">Exit</button>
-        </div>
-    </nav>
+    <h2 id="pakstudies" class="category-title">مطالعہ پاکستان (Pak Studies)</h2>
+    <div class="grid">
+        <div class="card"><span class="q-num">سوال</span><span class="question">پاکستان کا کل رقبہ کتنا ہے؟</span><div class="answer">796,096 مربع کلومیٹر</div></div>
+        <div class="card"><span class="q-num">سوال</span><span class="question">1973 کے آئین کی تیاری کی کمیٹی کے ارکان:</span><div class="answer">25 ارکان</div></div>
+        <div class="card"><span class="q-num">سوال</span><span class="question">زکوۃ و عشر آرڈیننس کب نافذ ہوا؟</span><div class="answer">20 جون 1980</div></div>
+        <div class="card"><span class="q-num">سوال</span><span class="question">اردو ہندی تنازعہ کب شروع ہوا؟</span><div class="answer">1867 میں</div></div>
+        <div class="card"><span class="q-num">سوال</span><span class="question">واخان کی پٹی پاکستان کو کس سے الگ کرتی ہے؟</span><div class="answer">تاجکستان</div></div>
+    </div>
 
-    <main class="p-6 max-w-6xl mx-auto">
-        <div id="dashTab" class="tab-content active-tab">
-            <div class="glass p-12 mb-10 relative overflow-hidden" onclick="checkAdminTrigger()">
-                <p class="text-[10px] font-black text-blue-400 mb-2 uppercase tracking-widest">Active Student</p>
-                <h1 id="dispName" class="text-5xl md:text-7xl font-black italic mb-6">---</h1>
-                <div class="inline-block bg-blue-600/20 px-6 py-2 rounded-xl border border-blue-600/30 text-xs font-black italic">
-                    LEVEL: <span id="dispLvl">01</span>
-                </div>
-            </div>
-            <div id="levelGrid" class="grid grid-cols-2 md:grid-cols-6 gap-6"></div>
-        </div>
+    <h2 id="gk" class="category-title">جنرل نالج (General Knowledge & GB)</h2>
+    <div class="grid">
+        <div class="card"><span class="q-num">سوال</span><span class="question">K2 کی کل اونچائی کتنی ہے؟</span><div class="answer">8611 میٹر</div></div>
+        <div class="card"><span class="q-num">سوال</span><span class="question">پاکستان UN کا رکن کب بنا؟</span><div class="answer">30 ستمبر 1947</div></div>
+        <div class="card"><span class="q-num">سوال</span><span class="question">OIC کا صدر دفتر کہاں ہے؟</span><div class="answer">جدہ (سعودی عرب)</div></div>
+        <div class="card"><span class="q-num">سوال</span><span class="question">پاکستان میں سوئی گیس کب دریافت ہوئی؟</span><div class="answer">1952 میں</div></div>
+    </div>
 
-        <div id="rankTab" class="tab-content">
-            <div class="glass p-10 max-w-md mx-auto">
-                <h3 class="text-2xl font-black text-center mb-8 italic">TOP CANDIDATES</h3>
-                <div id="leaderList" class="space-y-3"></div>
-            </div>
-        </div>
+    <h2 id="math" class="category-title">ریاضی کی علامات (Math Symbols)</h2>
+    <div class="grid">
+        <div class="card"><span class="q-num">علامت: &ne;</span><span class="question">کا مطلب ہے:</span><div class="answer">برابر نہیں ہے</div></div>
+        <div class="card"><span class="q-num">علامت: &gt;</span><span class="question">کا مطلب ہے:</span><div class="answer">سے بڑا ہے</div></div>
+        <div class="card"><span class="q-num">علامت: &perp;</span><span class="question">کا مطلب ہے:</span><div class="answer">عمودی (Perpendicular)</div></div>
+    </div>
+</div>
 
-        <div id="adminTab" class="tab-content">
-            <div class="glass p-10">
-                <h3 class="text-2xl font-black text-red-500 mb-6 italic">ADMIN PANEL</h3>
-                <div id="adminUserList" class="space-y-4"></div>
-            </div>
-        </div>
-    </main>
+<footer>
+    <p>&copy; 2026 Prime Solutions | Developed for GB Police Test Preparation</p>
+</footer>
 
-    <script>
-        // CONFIG
-        const firebaseConfig = {
-            apiKey: "AIzaSyCMG6KG_oD8cjEk4YpbxXik-C5q8K5MDHk",
-            authDomain: "dark-web-9.firebaseapp.com",
-            projectId: "dark-web-9",
-            databaseURL: "https://dark-web-9-default-rtdb.firebaseio.com/",
-            storageBucket: "dark-web-9.firebasestorage.app",
-            messagingSenderId: "564328425161",
-            appId: "1:564328425161:web:eb109ab77356dafe7f4f18"
-        };
-
-        // FORCE INITIALIZE
-        if (!firebase.apps.length) { firebase.initializeApp(firebaseConfig); }
-        const db = firebase.database();
-        const auth = firebase.auth();
-        let userData = null;
-        let adminClicks = 0;
-
-        window.onload = () => {
-            const saved = localStorage.getItem('gbts_key_vfinal');
-            document.getElementById('loader').style.display = 'none';
-            if(saved) initPortal(saved);
-            else document.getElementById('loginOverlay').style.display = 'flex';
-        };
-
-        async function handleLogin() {
-            const name = document.getElementById('uName').value.trim();
-            if(!name) return;
-            try {
-                const userKey = name.toLowerCase().replace(/\s/g, '_');
-                await auth.signInAnonymously();
-                const userRef = db.ref('gbts_final/' + userKey);
-                const snap = await userRef.once('value');
-                if(!snap.exists()) {
-                    await userRef.set({ name: name, level: 1, key: userKey });
-                }
-                localStorage.setItem('gbts_key_vfinal', userKey);
-                document.getElementById('loginOverlay').style.display = 'none';
-                initPortal(userKey);
-            } catch (e) { alert("Error: Rules or Domain check!"); }
-        }
-
-        function initPortal(key) {
-            db.ref('gbts_final/' + key).on('value', snap => {
-                userData = snap.val();
-                if(userData) {
-                    document.getElementById('dispName').innerText = userData.name;
-                    document.getElementById('dispLvl').innerText = userData.level;
-                    renderLevels();
-                }
-            });
-            loadRanks();
-            loadAdminPanel();
-        }
-
-        function renderLevels() {
-            const grid = document.getElementById('levelGrid'); grid.innerHTML = '';
-            for(let i=1; i<=12; i++) {
-                let lock = i > userData.level;
-                grid.innerHTML += `<div onclick="unlockLvl(${i}, ${lock})" class="lvl-card p-8 text-center ${lock ? 'locked' : ''}">
-                    <div class="text-3xl mb-2">${lock ? '🔒' : '🎖️'}</div>
-                    <p class="text-[10px] font-black opacity-50 uppercase">Lvl ${i}</p>
-                </div>`;
-            }
-        }
-
-        function unlockLvl(n, lock) {
-            if(lock || n !== userData.level) return;
-            if(confirm("Unlock next level?")) {
-                confetti();
-                db.ref('gbts_final/' + userData.key).update({ level: userData.level + 1 });
-                db.ref('gbts_ranks/' + userData.key).set({ name: userData.name, level: userData.level + 1 });
-            }
-        }
-
-        function loadRanks() {
-            db.ref('gbts_ranks').orderByChild('level').limitToLast(10).on('value', snap => {
-                const list = document.getElementById('leaderList'); list.innerHTML = '';
-                let arr = []; snap.forEach(c => arr.push(c.val()));
-                arr.reverse().forEach((r, i) => {
-                    list.innerHTML += `<div class="flex justify-between p-4 bg-white/5 rounded-2xl text-xs font-black">
-                        <span>#${i+1} ${r.name}</span>
-                        <span class="text-blue-500">LVL ${r.level}</span>
-                    </div>`;
-                });
-            });
-        }
-
-        function checkAdminTrigger() {
-            adminClicks++;
-            if(adminClicks >= 5) {
-                if(prompt("Pass?") === "prime786") showTab('adminTab');
-                adminClicks = 0;
-            }
-        }
-
-        function loadAdminPanel() {
-            db.ref('gbts_final').on('value', snap => {
-                const list = document.getElementById('adminUserList'); list.innerHTML = '';
-                snap.forEach(c => {
-                    const u = c.val();
-                    list.innerHTML += `<div class="flex justify-between p-4 glass">
-                        <span>${u.name} (Lvl ${u.level})</span>
-                        <button onclick="db.ref('gbts_final/${u.key}').remove()" class="text-red-500">DEL</button>
-                    </div>`;
-                });
-            });
-        }
-
-        function showTab(id) {
-            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active-tab'));
-            document.getElementById(id).classList.add('active-tab');
-        }
-        function logout() { localStorage.clear(); location.reload(); }
-    </script>
 </body>
 </html>

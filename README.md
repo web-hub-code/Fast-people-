@@ -2,201 +2,271 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GB Police Exam Hub | Nazim</title>
+    <title>GB Police Exam Master | Muhammad Nazim</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* تھوڑا روشن ڈارک شیڈز */
-            --bg-main: #1e293b; 
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --accent-blue: #38bdf8;
-            --accent-green: #4ade80;
-            --text-main: #f1f5f9;
-            --text-dim: #94a3b8;
+            /* Light Mode Colors */
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #1e293b;
+            --accent: #0ea5e9;
+            --border: #e2e8f0;
+            --success: #22c55e;
+            --nav-bg: rgba(255, 255, 255, 0.8);
+        }
+
+        [data-theme="dark"] {
+            /* Dark Mode Colors */
+            --bg: #0f172a;
+            --card: #1e293b;
+            --text: #f1f5f9;
+            --accent: #38bdf8;
+            --border: #334155;
+            --nav-bg: rgba(15, 23, 42, 0.8);
         }
 
         body {
             font-family: 'Poppins', 'Noto Nastaliq Urdu', sans-serif;
-            background: var(--bg-main);
-            /* ہلکا سا گریڈینٹ تاکہ بالکل کالا نہ لگے */
-            background-image: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            color: var(--text-main);
+            background-color: var(--bg);
+            color: var(--text);
+            transition: all 0.4s ease;
             margin: 0;
-            line-height: 1.6;
+            padding: 0;
+            line-height: 1.7;
         }
 
+        /* Floating Header */
         header {
-            padding: 60px 20px;
-            text-align: center;
-            background: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--glass-border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--nav-bg);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        header h1 {
-            font-size: 2.8rem;
-            margin: 0;
-            color: var(--accent-blue);
-            text-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+        .logo { font-weight: 700; font-size: 1.2rem; color: var(--accent); }
+
+        /* Theme Toggle Button */
+        #theme-toggle {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
         .container {
-            max-width: 1100px;
-            margin: -30px auto 50px;
+            max-width: 1200px;
+            margin: 40px auto;
             padding: 0 20px;
         }
 
-        /* Category Sections */
-        .section-box {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 30px;
-            margin-bottom: 40px;
-            backdrop-filter: blur(12px);
+        /* Modern Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, var(--accent), #6366f1);
+            border-radius: 30px;
+            color: white;
+            margin-bottom: 50px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
 
-        h2.cat-title {
-            color: var(--accent-blue);
-            font-size: 1.5rem;
+        /* Section Cards */
+        .section-group {
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
             margin-bottom: 25px;
             display: flex;
             align-items: center;
             gap: 10px;
+            color: var(--accent);
         }
 
-        /* Question Cards - Cleaner Look */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--glass-border);
-            padding: 20px;
-            border-radius: 16px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 25px;
+            border-radius: 20px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
         }
 
         .card:hover {
-            background: rgba(255, 255, 255, 0.07);
-            border-color: var(--accent-blue);
-            transform: translateY(-3px);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+            border-color: var(--accent);
         }
 
-        .q-text {
-            font-weight: 500;
-            color: var(--text-main);
-            display: block;
+        .q-label { font-size: 0.8rem; color: var(--accent); font-weight: 600; }
+        .question { display: block; margin: 10px 0; font-size: 1.1rem; }
+        
+        .answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: 0.4s;
+            color: var(--success);
+            font-weight: 700;
+            padding: 0 10px;
+            border-right: 3px solid var(--success);
+            margin-top: 5px;
         }
 
-        .a-text {
-            display: none;
-            margin-top: 12px;
-            color: var(--accent-green);
-            font-weight: bold;
-            font-size: 1.1rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 10px;
+        .card.active .answer {
+            max-height: 100px;
+            padding: 10px;
         }
 
-        .card.open .a-text {
-            display: block;
-        }
-
-        /* Math Table */
-        .symbol-grid {
+        /* Math Symbol Grid */
+        .math-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            gap: 10px;
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            gap: 15px;
         }
 
-        .symbol-item {
-            background: rgba(56, 189, 248, 0.1);
-            padding: 15px;
-            border-radius: 12px;
+        .math-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 20px;
             text-align: center;
-            border: 1px solid rgba(56, 189, 248, 0.2);
+            border-radius: 15px;
         }
 
-        .sym { font-size: 1.5rem; color: var(--accent-blue); display: block; }
-        .lab { font-size: 0.8rem; color: var(--text-dim); }
+        .math-item b { font-size: 1.5rem; color: var(--accent); }
 
         footer {
             text-align: center;
-            padding: 40px;
-            color: var(--text-dim);
-            font-size: 0.9rem;
+            padding: 60px;
+            border-top: 1px solid var(--border);
+            color: var(--text);
+            opacity: 0.6;
         }
 
     </style>
 </head>
-<body>
+<body data-theme="light">
 
 <header>
-    <h1>GB Police Prep Portal</h1>
-    <p style="color: var(--text-dim)">باصلاحیت امیدوار: محمد ناظم</p>
+    <div class="logo">PRIME SOLUTIONS | GB POLICE</div>
+    <button id="theme-toggle" onclick="toggleTheme()">🌓 موڈ بدلیں</button>
 </header>
 
 <div class="container">
+    <div class="hero">
+        <h1 style="margin:0">تیاری مرکز (Exam Hub)</h1>
+        <p>امیدوار: محمد ناظم | پوسٹ: فٹ کانسٹیبل</p>
+    </div>
 
-    <div class="section-box">
-        <h2 class="cat-title">🏔️ گلگت بلتستان اسپیشل</h2>
+    <div class="section-group">
+        <h2 class="section-title">⛰️ گلگت بلتستان اسپیشل</h2>
         <div class="grid">
-            <div class="card" onclick="this.classList.toggle('open')">
-                <span class="q-text">K2 کی کل بلندی کتنی ہے؟</span>
-                <div class="a-text">8,611 میٹر</div>
+            <div class="card" onclick="this.classList.toggle('active')">
+                <span class="q-label">GK</span>
+                <span class="question">K2 کی اونچائی کتنی ہے؟</span>
+                <div class="answer">8611 میٹر</div>
             </div>
-            <div class="card" onclick="this.classList.toggle('open')">
-                <span class="q-text">ضلع غذر کا رقبہ کتنا ہے؟</span>
-                <div class="a-text">9,635 مربع کلومیٹر</div>
+            <div class="card" onclick="this.classList.toggle('active')">
+                <span class="q-label">GB</span>
+                <span class="question">ضلع غذر کا کل رقبہ کتنا ہے؟</span>
+                <div class="answer">9635 مربع کلومیٹر</div>
             </div>
-            <div class="card" onclick="this.classList.toggle('open')">
-                <span class="q-text">GB کی پہلی خاتون گورنر؟</span>
-                <div class="a-text">بیگم شمع خالد</div>
+            <div class="card" onclick="this.classList.toggle('active')">
+                <span class="q-label">History</span>
+                <span class="question">گلگت بلتستان کے کل کتنے اضلاع ہیں؟</span>
+                <div class="answer">14 اضلاع</div>
             </div>
         </div>
     </div>
 
-    <div class="section-box">
-        <h2 class="cat-title">📐 ریاضی کی علامات</h2>
-        <div class="symbol-grid">
-            <div class="symbol-item"><span class="sym">∴</span><span class="lab">لہٰذا</span></div>
-            <div class="symbol-item"><span class="sym">∵</span><span class="lab">کیونکہ</span></div>
-            <div class="symbol-item"><span class="sym">≅</span><span class="lab">مماثل ہے</span></div>
-            <div class="symbol-item"><span class="sym">∝</span><span class="lab">تناسب</span></div>
-            <div class="symbol-item"><span class="sym">∈</span><span class="lab">رکن ہے</span></div>
-            <div class="symbol-item"><span class="sym">∞</span><span class="lab">لامحدود</span></div>
+    <div class="section-group">
+        <h2 class="section-title">📐 ریاضی کی علامات</h2>
+        <div class="math-grid">
+            <div class="math-item"><b>∴</b><br>لہٰذا</div>
+            <div class="math-item"><b>∵</b><br>کیونکہ</div>
+            <div class="math-item"><b>≅</b><br>مماثل ہے</div>
+            <div class="math-item"><b>∞</b><br>لامحدود</div>
+            <div class="math-item"><b>∝</b><br>تناسب</div>
+            <div class="math-item"><b>∈</b><br>رکن ہے</div>
         </div>
     </div>
 
-    <div class="section-box">
-        <h2 class="cat-title">📖 اسلامیات و مطالعہ پاکستان</h2>
+    <div class="section-group">
+        <h2 class="section-title">🌍 مطالعہ پاکستان و جنرل نالج</h2>
         <div class="grid">
-            <div class="card" onclick="this.classList.toggle('open')">
-                <span class="q-text">اردو کس زبان کا لفظ ہے؟</span>
-                <div class="a-text">ترکی (لشکر)</div>
+            <div class="card" onclick="this.classList.toggle('active')">
+                <span class="q-label">Pak Study</span>
+                <span class="question">اردو کس زبان کا لفظ ہے؟</span>
+                <div class="answer">ترکی (لشکر)</div>
             </div>
-            <div class="card" onclick="this.classList.toggle('open')">
-                <span class="q-text">فتحِ مکہ پر آپ ﷺ نے کونسی سورہ تلاوت فرمائی؟</span>
-                <div class="a-text">سورہ الفتح</div>
+            <div class="card" onclick="this.classList.toggle('active')">
+                <span class="q-label">History</span>
+                <span class="question">پاکستان کب UN کا رکن بنا؟</span>
+                <div class="answer">30 ستمبر 1947</div>
             </div>
-            <div class="card" onclick="this.classList.toggle('open')">
-                <span class="q-text">پاکستان کا کل رقبہ کتنا ہے؟</span>
-                <div class="a-text">796,096 مربع کلومیٹر</div>
+            <div class="card" onclick="this.classList.toggle('active')">
+                <span class="q-label">Religion</span>
+                <span class="question">فتحِ مکہ پر کونسی سورہ تلاوت کی گئی؟</span>
+                <div class="answer">سورہ الفتح</div>
+            </div>
+            <div class="card" onclick="this.classList.toggle('active')">
+                <span class="q-label">Current</span>
+                <span class="question">پاکستان کی آبادی میں اضافے کی شرح؟</span>
+                <div class="answer">2.8 فیصد</div>
+            </div>
+            <div class="card" onclick="this.classList.toggle('active')">
+                <span class="q-label">GK</span>
+                <span class="question">دنیا کا سب سے بڑا اسلامی ملک (رقبہ)؟</span>
+                <div class="answer">قازقستان</div>
+            </div>
+            <div class="card" onclick="this.classList.toggle('active')">
+                <span class="q-label">GK</span>
+                <span class="question">OIC کا ہیڈ کوارٹر کہاں ہے؟</span>
+                <div class="answer">جدہ (سعودی عرب)</div>
             </div>
         </div>
     </div>
-
 </div>
 
 <footer>
-    <p>Prime Solutions © 2026 | Created for Muhammad Nazim</p>
+    <p>Developed by Prime Solutions | © 2026 Muhammad Nazim Portfolio</p>
 </footer>
+
+<script>
+    function toggleTheme() {
+        const body = document.body;
+        const currentTheme = body.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        body.setAttribute('data-theme', newTheme);
+        
+        // Save preference (optional but good)
+        localStorage.setItem('theme', newTheme);
+    }
+
+    // Check for saved theme
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        document.body.setAttribute('data-theme', savedTheme);
+    }
+</script>
 
 </body>
 </html>

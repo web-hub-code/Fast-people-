@@ -2,139 +2,219 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GB Police Test Prep | Muhammad Nazim</title>
+    <title>GB Police Elite Prep | Muhammad Nazim</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #0f172a;
-            --secondary: #1e293b;
-            --accent: #38bdf8;
-            --text-main: #f1f5f9;
-            --text-dim: #94a3b8;
-            --success: #22c55e;
+            --bg-deep: #050b18;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --accent-neon: #00f2ff;
+            --accent-glow: rgba(0, 242, 255, 0.5);
+            --text-silver: #cbd5e1;
+            --success-neon: #39ff14;
         }
 
         body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--primary);
-            color: var(--text-main);
+            font-family: 'Poppins', 'Noto Nastaliq Urdu', sans-serif;
+            background-color: var(--bg-deep);
+            background-image: radial-gradient(circle at 50% 50%, #1e293b 0%, #050b18 100%);
+            color: white;
             margin: 0;
             padding: 0;
-            line-height: 1.6;
+            overflow-x: hidden;
         }
 
+        /* Animated Header */
         header {
-            background: linear-gradient(to bottom, #1e293b, #0f172a);
-            padding: 40px 20px;
-            text-align: center;
-            border-bottom: 2px solid var(--accent);
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(45deg, rgba(15, 23, 42, 0.9), rgba(5, 11, 24, 0.9));
+            border-bottom: 2px solid var(--accent-neon);
+            box-shadow: 0 0 30px var(--accent-glow);
+            position: relative;
         }
 
         header h1 {
+            font-size: 3rem;
             margin: 0;
-            font-size: 2.2rem;
-            color: var(--accent);
-            text-transform: uppercase;
+            background: linear-gradient(to right, #fff, var(--accent-neon));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 15px var(--accent-glow);
+            letter-spacing: 2px;
         }
 
-        header p {
-            color: var(--text-dim);
-            margin-top: 10px;
+        .user-info {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 5px 20px;
+            border-radius: 50px;
+            border: 1px solid var(--accent-neon);
+            margin-top: 15px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(5px);
         }
 
-        .container {
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 0 20px;
-        }
-
+        /* Futuristic Nav */
         .section-nav {
+            position: sticky;
+            top: 20px;
+            z-index: 100;
             display: flex;
             justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-bottom: 40px;
+            gap: 15px;
+            margin: -30px auto 50px;
+            padding: 10px;
         }
 
         .nav-btn {
-            background: var(--secondary);
-            color: var(--text-main);
-            padding: 10px 20px;
-            border-radius: 30px;
+            background: var(--glass-bg);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 12px;
             text-decoration: none;
-            border: 1px solid var(--accent);
-            transition: 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-weight: 500;
         }
 
         .nav-btn:hover {
-            background: var(--accent);
-            color: var(--primary);
+            border-color: var(--accent-neon);
+            box-shadow: 0 0 20px var(--accent-glow);
+            transform: scale(1.1);
+            color: var(--accent-neon);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
         }
 
         .category-title {
-            font-size: 1.8rem;
-            border-right: 5px solid var(--accent);
-            padding-right: 15px;
-            margin: 40px 0 20px;
-            color: var(--accent);
+            font-size: 2rem;
+            margin: 60px 0 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
+        .category-title::after {
+            content: '';
+            height: 2px;
+            flex-grow: 1;
+            background: linear-gradient(to left, var(--accent-neon), transparent);
+        }
+
+        /* Modern Grid & Cards */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
         }
 
         .card {
-            background: var(--secondary);
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: transform 0.2s;
+            background: var(--glass-bg);
+            padding: 25px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, transparent, rgba(0, 242, 255, 0.05));
+            pointer-events: none;
         }
 
         .card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent);
+            transform: translateY(-10px);
+            border-color: var(--accent-neon);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         .q-num {
-            color: var(--accent);
-            font-size: 0.8rem;
-            font-weight: bold;
+            color: var(--accent-neon);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
             display: block;
-            margin-bottom: 8px;
         }
 
         .question {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 12px;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
             display: block;
         }
 
+        /* Interactive Answer System */
         .answer {
-            color: var(--success);
-            font-weight: 500;
-            background: rgba(34, 197, 94, 0.1);
-            padding: 8px 12px;
-            border-radius: 8px;
-            display: inline-block;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, opacity 0.3s;
+            opacity: 0;
+            color: var(--success-neon);
+            background: rgba(57, 255, 20, 0.05);
+            border-radius: 10px;
+            padding: 0 15px;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            height: 50px;
+        }
+
+        .card.active .answer {
+            max-height: 100px;
+            opacity: 1;
+            padding: 10px 15px;
+            border: 1px dashed var(--success-neon);
+        }
+
+        .click-hint {
+            font-size: 0.7rem;
+            color: var(--text-silver);
+            font-style: italic;
+            margin-top: 10px;
+            display: block;
+            text-align: left;
         }
 
         footer {
+            margin-top: 100px;
+            padding: 50px;
+            background: rgba(0,0,0,0.5);
             text-align: center;
-            padding: 40px;
-            color: var(--text-dim);
-            font-size: 0.9rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .pulse {
+            animation: pulse-animation 2s infinite;
+        }
+
+        @keyframes pulse-animation {
+            0% { box-shadow: 0 0 0 0px rgba(0, 242, 255, 0.4); }
+            100% { box-shadow: 0 0 0 20px rgba(0, 242, 255, 0); }
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>GB Police Recruitment Portal</h1>
-    <p>Candidate: Muhammad Nazim | District: Astore | Post: Foot Constable</p>
+    <h1>GB POLICE ELITE</h1>
+    <div class="user-info">
+        👤 <b>Muhammad Nazim</b> | 📍 Astore | 🎖️ Foot Constable Prep
+    </div>
 </header>
 
 <div class="container">
@@ -142,46 +222,71 @@
         <a href="#islamiyat" class="nav-btn">اسلامیات</a>
         <a href="#pakstudies" class="nav-btn">مطالعہ پاکستان</a>
         <a href="#gk" class="nav-btn">جنرل نالج</a>
-        <a href="#math" class="nav-btn">ریاضی</a>
     </div>
 
-    <h2 id="islamiyat" class="category-title">اسلامیات (Islamiyat)</h2>
+    <h2 id="islamiyat" class="category-title">🌙 اسلامیات</h2>
     <div class="grid">
-        <div class="card"><span class="q-num">سوال</span><span class="question">اسلام قبول کرنے والے پہلے رومی:</span><div class="answer">حضرت صہیب رومی (R.A)</div></div>
-        <div class="card"><span class="q-num">سوال</span><span class="question">پہلے حافظ قرآن صحابی:</span><div class="answer">حضرت عثمان غنی (R.A)</div></div>
-        <div class="card"><span class="q-num">سوال</span><span class="question">غزوہ خندق میں مدینہ کا محاصرہ رہا:</span><div class="answer">30 دن</div></div>
-        <div class="card"><span class="q-num">سوال</span><span class="question">فتح مکہ کے موقع پر تلاوت کی گئی سورہ:</span><div class="answer">سورہ الفتح</div></div>
-        <div class="card"><span class="q-num">سوال</span><span class="question">پہلا اسلامی جھنڈا کس رنگ کا تھا؟</span><div class="answer">سفید</div></div>
+        <div class="card" onclick="toggleAnswer(this)">
+            <span class="q-num">Question 01</span>
+            <span class="question">اسلام قبول کرنے والے پہلے رومی صحابی کون تھے؟</span>
+            <div class="answer">حضرت صہیب رومی (R.A)</div>
+            <span class="click-hint">جواب دیکھنے کے لیے کلک کریں...</span>
+        </div>
+
+        <div class="card" onclick="toggleAnswer(this)">
+            <span class="q-num">Question 02</span>
+            <span class="question">پہلے حافظ قرآن صحابی کا نام بتائیں:</span>
+            <div class="answer">حضرت عثمان غنی (R.A)</div>
+            <span class="click-hint">جواب دیکھنے کے لیے کلک کریں...</span>
+        </div>
+        
+        <div class="card" onclick="toggleAnswer(this)">
+            <span class="q-num">Question 03</span>
+            <span class="question">غزوہ خندق میں مدینہ کا محاصرہ کتنے دن رہا؟</span>
+            <div class="answer">30 دن</div>
+            <span class="click-hint">جواب دیکھنے کے لیے کلک کریں...</span>
+        </div>
     </div>
 
-    <h2 id="pakstudies" class="category-title">مطالعہ پاکستان (Pak Studies)</h2>
+    <h2 id="pakstudies" class="category-title">🇵🇰 مطالعہ پاکستان</h2>
     <div class="grid">
-        <div class="card"><span class="q-num">سوال</span><span class="question">پاکستان کا کل رقبہ کتنا ہے؟</span><div class="answer">796,096 مربع کلومیٹر</div></div>
-        <div class="card"><span class="q-num">سوال</span><span class="question">1973 کے آئین کی تیاری کی کمیٹی کے ارکان:</span><div class="answer">25 ارکان</div></div>
-        <div class="card"><span class="q-num">سوال</span><span class="question">زکوۃ و عشر آرڈیننس کب نافذ ہوا؟</span><div class="answer">20 جون 1980</div></div>
-        <div class="card"><span class="q-num">سوال</span><span class="question">اردو ہندی تنازعہ کب شروع ہوا؟</span><div class="answer">1867 میں</div></div>
-        <div class="card"><span class="q-num">سوال</span><span class="question">واخان کی پٹی پاکستان کو کس سے الگ کرتی ہے؟</span><div class="answer">تاجکستان</div></div>
-    </div>
-
-    <h2 id="gk" class="category-title">جنرل نالج (General Knowledge & GB)</h2>
-    <div class="grid">
-        <div class="card"><span class="q-num">سوال</span><span class="question">K2 کی کل اونچائی کتنی ہے؟</span><div class="answer">8611 میٹر</div></div>
-        <div class="card"><span class="q-num">سوال</span><span class="question">پاکستان UN کا رکن کب بنا؟</span><div class="answer">30 ستمبر 1947</div></div>
-        <div class="card"><span class="q-num">سوال</span><span class="question">OIC کا صدر دفتر کہاں ہے؟</span><div class="answer">جدہ (سعودی عرب)</div></div>
-        <div class="card"><span class="q-num">سوال</span><span class="question">پاکستان میں سوئی گیس کب دریافت ہوئی؟</span><div class="answer">1952 میں</div></div>
-    </div>
-
-    <h2 id="math" class="category-title">ریاضی کی علامات (Math Symbols)</h2>
-    <div class="grid">
-        <div class="card"><span class="q-num">علامت: &ne;</span><span class="question">کا مطلب ہے:</span><div class="answer">برابر نہیں ہے</div></div>
-        <div class="card"><span class="q-num">علامت: &gt;</span><span class="question">کا مطلب ہے:</span><div class="answer">سے بڑا ہے</div></div>
-        <div class="card"><span class="q-num">علامت: &perp;</span><span class="question">کا مطلب ہے:</span><div class="answer">عمودی (Perpendicular)</div></div>
+        <div class="card" onclick="toggleAnswer(this)">
+            <span class="q-num">Geo-Data</span>
+            <span class="question">واخان کی پٹی پاکستان کو کس ملک سے الگ کرتی ہے؟</span>
+            <div class="answer">تاجکستان</div>
+            <span class="click-hint">جواب دیکھنے کے لیے کلک کریں...</span>
+        </div>
+        <div class="card" onclick="toggleAnswer(this)">
+            <span class="q-num">Constitution</span>
+            <span class="question">1973 کے آئین کی تیاری کے لیے کتنے ارکان تھے؟</span>
+            <div class="answer">25 ارکان</div>
+            <span class="click-hint">جواب دیکھنے کے لیے کلک کریں...</span>
+        </div>
     </div>
 </div>
 
 <footer>
-    <p>&copy; 2026 Prime Solutions | Developed for GB Police Test Preparation</p>
+    <p>Powered by <b>Prime Solutions</b> Portfolio System</p>
+    <p style="font-size: 0.8rem; color: var(--accent-neon);">© 2026 Futuristic Recruitment Portal</p>
 </footer>
+
+<script>
+    function toggleAnswer(card) {
+        // Close other cards (optional)
+        // document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+        
+        // Toggle current card
+        card.classList.toggle('active');
+        
+        // Update hint text
+        const hint = card.querySelector('.click-hint');
+        if(card.classList.contains('active')) {
+            hint.style.display = 'none';
+        } else {
+            hint.style.display = 'block';
+        }
+    }
+</script>
 
 </body>
 </html>
